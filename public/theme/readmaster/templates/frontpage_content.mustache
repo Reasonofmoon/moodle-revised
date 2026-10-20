@@ -1,0 +1,114 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_readmaster/frontpage_content
+
+    Sections of the public home page. Context comes from \theme_readmaster\output\frontpage.
+
+    Example context (json):
+    {
+        "name": "리드마스터 입시학원",
+        "shortname": "리드마스터",
+        "tagline": "부천 옥길동, 초·중·고 영어 전문",
+        "description": "원장·부원장 직접 강의",
+        "logourl": "logo.png",
+        "markurl": "logomark.png",
+        "loginurl": "/login/index.php",
+        "links": {"blog": "https://blog.test", "platform": null, "parent": null, "consult": "https://c.test", "leveltest": null},
+        "hasctas": true,
+        "programs": [{"number": "01", "title": "초·중·고 영어", "description": "학생별 관리"}],
+        "hasprograms": true,
+        "news": [{"title": "새 글", "url": "https://blog.test/1", "image": null, "datestr": "2026.10.20"}],
+        "hasnews": true,
+        "contact": [{"type": "address", "label": "주소", "value": "부천 옥길동"}],
+        "hascontact": true,
+        "year": "2026"
+    }
+}}
+<header class="rm-topbar">
+    <div class="rm-container rm-topbar-inner">
+        <a class="rm-brand" href="{{config.wwwroot}}/">
+            <img src="{{markurl}}" alt="" class="rm-brand-logo" width="44" height="44">
+            <span class="rm-brand-name">{{name}}</span>
+        </a>
+        <nav class="rm-topnav" aria-label="{{shortname}}">
+            {{#links.blog}}<a href="{{links.blog}}" target="_blank" rel="noopener">{{#str}}nav_blog, theme_readmaster{{/str}}</a>{{/links.blog}}
+            {{#links.platform}}<a href="{{links.platform}}" target="_blank" rel="noopener">{{#str}}nav_platform, theme_readmaster{{/str}}</a>{{/links.platform}}
+            {{#links.parent}}<a href="{{links.parent}}" target="_blank" rel="noopener">{{#str}}nav_parent, theme_readmaster{{/str}}</a>{{/links.parent}}
+            <a class="btn btn-primary rm-login" href="{{loginurl}}">{{#str}}nav_login, theme_readmaster{{/str}}</a>
+        </nav>
+    </div>
+</header>
+
+<section class="rm-hero">
+    <div class="rm-container rm-hero-inner">
+        <div class="rm-hero-text">
+            <p class="rm-eyebrow">{{tagline}}</p>
+            <h1 class="rm-hero-title">{{name}}</h1>
+            {{#description}}<p class="rm-hero-desc">{{description}}</p>{{/description}}
+            {{#hasctas}}
+            <div class="rm-hero-ctas">
+                {{#links.consult}}<a class="btn btn-primary btn-lg" href="{{links.consult}}" target="_blank" rel="noopener">{{#str}}cta_consult, theme_readmaster{{/str}}</a>{{/links.consult}}
+                {{#links.leveltest}}<a class="btn btn-outline-primary btn-lg" href="{{links.leveltest}}" target="_blank" rel="noopener">{{#str}}cta_leveltest, theme_readmaster{{/str}}</a>{{/links.leveltest}}
+            </div>
+            {{/hasctas}}
+        </div>
+        <div class="rm-hero-mark" aria-hidden="true">
+            <img src="{{logourl}}" alt="">
+        </div>
+    </div>
+</section>
+
+{{#hasprograms}}
+<section class="rm-section rm-programs" aria-labelledby="rm-programs-heading">
+    <div class="rm-container">
+        <h2 id="rm-programs-heading" class="rm-section-title">{{#str}}programs_heading, theme_readmaster{{/str}}</h2>
+        <ol class="rm-program-grid">
+            {{#programs}}
+            <li class="rm-program">
+                <span class="rm-program-number">{{number}}</span>
+                <h3 class="rm-program-title">{{title}}</h3>
+                {{#description}}<p class="rm-program-desc">{{description}}</p>{{/description}}
+            </li>
+            {{/programs}}
+        </ol>
+    </div>
+</section>
+{{/hasprograms}}
+
+{{#hasnews}}
+<section class="rm-section rm-news" aria-labelledby="rm-news-heading">
+    <div class="rm-container">
+        <div class="rm-section-head">
+            <h2 id="rm-news-heading" class="rm-section-title">{{#str}}news_heading, theme_readmaster{{/str}}</h2>
+            {{#links.blog}}<a class="rm-more" href="{{links.blog}}" target="_blank" rel="noopener">{{#str}}news_more, theme_readmaster{{/str}} →</a>{{/links.blog}}
+        </div>
+        <ul class="rm-news-grid">
+            {{#news}}
+            <li class="rm-news-item">
+                <a href="{{url}}" target="_blank" rel="noopener">
+                    {{#image}}<img class="rm-news-image" src="{{image}}" alt="" loading="lazy" referrerpolicy="no-referrer">{{/image}}
+                    {{^image}}<span class="rm-news-image rm-news-image-empty"></span>{{/image}}
+                    <span class="rm-news-date">{{datestr}}</span>
+                    <span class="rm-news-title">{{title}}</span>
+                </a>
+            </li>
+            {{/news}}
+        </ul>
+    </div>
+</section>
+{{/hasnews}}

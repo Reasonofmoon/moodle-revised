@@ -1,0 +1,30 @@
+{
+  "name": "CHANGE ME: 학원 정식 이름",
+  "shortname": "CHANGE ME",
+  "tagline": "CHANGE ME: 한 줄 소개 (지역, 대상, 과목)",
+  "description": "CHANGE ME: 두 번째 줄 소개",
+  "colors": {
+    "primary": "#1F2937",
+    "accent": "#F59E0B",
+    "paper": "#F9FAFB"
+  },
+  "contact": {
+    "phone": "",
+    "address": "",
+    "hours": ""
+  },
+  "links": {
+    "blog": "https://blog.naver.com/CHANGE_ME",
+    "rss": "",
+    "platform": "",
+    "consult": "",
+    "leveltest": "",
+    "parent": ""
+  },
+  "programs": [
+    {
+      "title": "CHANGE ME: 프로그램 이름",
+      "description": "CHANGE ME: 한 문장 설명"
+    }
+  ]
+}

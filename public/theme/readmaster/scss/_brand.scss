@@ -1,0 +1,21 @@
+// Site-wide brand touches for logged-in pages. Layouts stay Boost's own.
+
+.navbar.fixed-top {
+    border-bottom: 3px solid $rm-accent;
+}
+
+.navbar-brand .logo {
+    max-height: 32px;
+}
+
+// Accent is a background/rule color only: text on it stays primary for contrast.
+.badge.bg-warning,
+.text-bg-warning {
+    background-color: $rm-accent !important;
+    color: $primary !important;
+}
+
+.page-header-headings h1,
+.course-content .sectionname {
+    letter-spacing: -0.01em;
+}
