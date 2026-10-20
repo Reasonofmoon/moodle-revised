@@ -45,123 +45,42 @@ set_config('forcelogin', 0);
 set_config('timezone', 'Asia/Seoul');
 set_config('forcetimezone', 'Asia/Seoul');
 set_config('country', 'KR');
-set_config('frontpage', '6,5,7,2'); // List of courses, enrolled courses, course search, categories
-set_config('frontpageloggedin', '5,6,7,2');
 set_config('maxbytes', 104857600); // 100MB
 set_config('enablecompletion', 1);
 set_config('enablemyhome', 1);
-set_config('defaulthomepage', HOMEPAGE_SITE);
 
-// Theme Boost customization for ReadMaster Academy
-set_config('brandcolor', '#1E3A8A', 'theme_boost');
-$customscss = <<<SCSS
-// ReadMaster Academy Custom Styling
-.readmaster-hero {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    color: #ffffff;
-    border-radius: 16px;
-    padding: 2.5rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.15);
-}
-.readmaster-hero h2 {
-    color: #ffffff;
-    font-weight: 800;
-    margin-bottom: 0.75rem;
-}
-.readmaster-badge {
-    display: inline-block;
-    background: rgba(255, 255, 255, 0.2);
-    color: #ffffff;
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-.readmaster-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
-}
-.readmaster-card {
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    padding: 1.25rem;
-}
-.readmaster-card h4 {
-    color: #fde047;
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-}
-.readmaster-card p {
-    margin-bottom: 0;
-    font-size: 0.9rem;
-    opacity: 0.95;
-}
-SCSS;
-set_config('scss', $customscss, 'theme_boost');
-set_config('footnote', '<div class="text-center py-2"><strong>리드마스터 영어독해·원서리딩 전문학원 (ReadMaster English Reading Academy)</strong> | 문의: 02-555-READ | 평일 13:00~22:00 / 주말 10:00~18:00</div>', 'theme_boost');
+// Branding lives in the theme (public/theme/readmaster/brand/profile.json).
+// Visitors see the theme's public home; logged-in users go to their dashboard.
+const READMASTER_THEME = 'readmaster';
+set_config('theme', READMASTER_THEME);
+set_config('defaulthomepage', HOMEPAGE_MY);
+set_config('frontpage', 'none');
+set_config('frontpageloggedin', '5,6,7,2'); // Enrolled courses, all courses, search, categories.
 
-// Update Frontpage Course (SITEID = 1)
+// Remove branding injected into Boost by earlier versions of this script.
+unset_config('brandcolor', 'theme_boost');
+unset_config('scss', 'theme_boost');
+unset_config('footnote', 'theme_boost');
+
+$brand = \theme_readmaster\local\brand::load();
 $site = get_site();
-$frontpagesummary = <<<HTML
-<div class="readmaster-hero">
-    <span class="readmaster-badge">READMASTER ENGLISH READING ACADEMY</span>
-    <h2>리드마스터 영어독해·원서리딩 학원 온라인 학습관</h2>
-    <p style="font-size: 1.08rem; opacity: 0.95;">
-        단순 암기식 영어가 아닌, <strong>원서 정독(Extensive &amp; Intensive Reading)과 정확한 구문·논리 독해</strong>로 흔들리지 않는 영어 실력을 완성합니다.<br>
-        신입생은 먼저 <strong>[01. 레벨 테스트 &amp; 진단]</strong> 강좌에서 온라인 레벨 테스트를 응시해 주세요.
-    </p>
-    <div class="readmaster-grid">
-        <div class="readmaster-card">
-            <h4>Step 1. 정밀 리딩 진단</h4>
-            <p>어휘력·구문 분석력·논리 추론력을 측정하여 AR/Lexile 수준별 맞춤 반 배정</p>
-        </div>
-        <div class="readmaster-card">
-            <h4>Step 2. 원서 리딩 클럽</h4>
-            <p>Magic Tree House부터 Newbery 수상작까지 매주 원서 정독·오디오 섀도잉·북클럽</p>
-        </div>
-        <div class="readmaster-card">
-            <h4>Step 3. 구문 &amp; 수능 심층독해</h4>
-            <p>직독직해 구문 훈련과 학술 아티클·수능 고난도 빈칸/추론 완벽 대비</p>
-        </div>
-        <div class="readmaster-card">
-            <h4>Step 4. 북리포트 &amp; NIE 에세이</h4>
-            <p>읽은 내용을 자신의 언어로 요약·비평하는 Book Report &amp; 영자신문 라이팅 첨삭</p>
-        </div>
-    </div>
-</div>
-HTML;
-
 $DB->update_record('course', (object)[
     'id' => $site->id,
-    'fullname' => '리드마스터 영어독해·원서리딩 학원 (ReadMaster Academy)',
-    'shortname' => 'ReadMaster',
-    'summary' => $frontpagesummary,
+    'fullname' => $brand->get('name'),
+    'shortname' => $brand->get('shortname'),
+    'summary' => '',
     'summaryformat' => FORMAT_HTML,
-    'numsections' => 1,
 ]);
-
-// Also update Frontpage Section 1 summary so it displays prominently on site home
 $fpsection = $DB->get_record('course_sections', ['course' => $site->id, 'section' => 1]);
-if (!$fpsection) {
-    course_create_sections_if_missing($site->id, [1]);
-    $fpsection = $DB->get_record('course_sections', ['course' => $site->id, 'section' => 1]);
-}
 if ($fpsection) {
-    $DB->update_record('course_sections', (object)[
-        'id' => $fpsection->id,
-        'name' => '리드마스터 학원 안내',
-        'summary' => $frontpagesummary,
-        'summaryformat' => FORMAT_HTML,
-        'visible' => 1,
-    ]);
+    $DB->update_record('course_sections', (object)['id' => $fpsection->id, 'name' => null, 'summary' => '']);
 }
 rebuild_course_cache($site->id, true);
+
+// Fill the home page news section now instead of waiting for the hourly task.
+(new \theme_readmaster\task\refresh_blog_feed())->execute();
+theme_reset_all_caches();
+cli_writeln("테마 '" . READMASTER_THEME . "' 적용 완료: " . $brand->get('name'));
 
 cli_heading("2. 리드마스터 학원 강좌 카테고리 생성");
 
