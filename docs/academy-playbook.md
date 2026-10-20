@@ -47,7 +47,7 @@ fetches the blog feed once, and resets theme caches.
 
 ## 4. Verify
 
-1. Theme tests: `docker exec -u www-data readmaster-moodle-web vendor/bin/phpunit public/theme/<name>/tests`
+1. Theme tests: `docker exec -u www-data readmaster-moodle-web vendor/bin/phpunit --testsuite theme_<name>_testsuite` (about 10 min; a directory path runs nothing)
 2. Precompile CSS **before** opening a browser (see pitfalls), then screenshot `/` at 1440 and 390 wide,
    `/login/index.php`, and a course page while logged in. Check: no horizontal scroll at 390px.
 
