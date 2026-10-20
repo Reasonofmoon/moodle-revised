@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mariadb:11.4
+    container_name: readmaster-moodle-db
+    restart: unless-stopped
+    environment:
+      MARIADB_ROOT_PASSWORD: readmaster_root_pass
+      MARIADB_DATABASE: moodle
+      MARIADB_USER: moodleuser
+      MARIADB_PASSWORD: readmaster_db_pass
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --innodb-file-per-table=1
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 5s
+      timeout: 5s
+      retries: 15
+
+  moodle:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    container_name: readmaster-moodle-web
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./:/var/www/html
+      - ../moodledata:/var/www/moodledata
+
+volumes:
+  db_data:
