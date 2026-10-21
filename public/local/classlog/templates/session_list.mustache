@@ -1,0 +1,43 @@
+{{!
+    @template local_classlog/session_list
+
+    Class sessions of a course, newest first.
+
+    Context variables required for this template:
+    * openbutton - rendered "open today's class" button, empty without manage capability
+    * reporturl - attendance report URL
+    * hassessions - bool
+    * sessions - list of {date, url, counts, progress}
+
+    Example context (json):
+    {
+        "openbutton": "",
+        "reporturl": "#",
+        "hassessions": true,
+        "sessions": [
+            {"date": "21/10/26, 16:00", "url": "#", "counts": "Present 8 · Late 1 · Absent 1 · Excused 0", "progress": "Unit 3"}
+        ]
+    }
+}}
+<div class="local-classlog-list">
+    <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+        {{{openbutton}}}
+        <a class="btn btn-outline-secondary" href="{{reporturl}}">{{#str}}report, local_classlog{{/str}}</a>
+    </div>
+    {{#hassessions}}
+    <div class="list-group">
+        {{#sessions}}
+        <a class="list-group-item list-group-item-action" href="{{url}}">
+            <div class="d-flex flex-wrap justify-content-between gap-2">
+                <strong>{{date}}</strong>
+                <span class="text-muted small">{{counts}}</span>
+            </div>
+            {{#progress}}<div class="small text-truncate mt-1">{{progress}}</div>{{/progress}}
+        </a>
+        {{/sessions}}
+    </div>
+    {{/hassessions}}
+    {{^hassessions}}
+    <p class="text-muted">{{#str}}nosessions, local_classlog{{/str}}</p>
+    {{/hassessions}}
+</div>

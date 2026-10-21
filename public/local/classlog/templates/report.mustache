@@ -1,0 +1,54 @@
+{{!
+    @template local_classlog/report
+
+    Per-student attendance for a period.
+
+    Context variables required for this template:
+    * hasrows - bool
+    * rows - list of {fullname, sessions, present, late, absent, excused, rate}
+    * downloadurl - CSV download URL
+
+    Example context (json):
+    {
+        "hasrows": true,
+        "downloadurl": "#",
+        "rows": [{"fullname": "Amy Alpha", "sessions": 3, "present": 1, "late": 1, "absent": 0, "excused": 1, "rate": "100"}]
+    }
+}}
+<div class="local-classlog-report">
+    {{#hasrows}}
+    <div class="table-responsive">
+        <table class="generaltable table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">{{#str}}col_student, local_classlog{{/str}}</th>
+                    <th scope="col" class="text-end">{{#str}}col_sessions, local_classlog{{/str}}</th>
+                    <th scope="col" class="text-end">{{#str}}status_present, local_classlog{{/str}}</th>
+                    <th scope="col" class="text-end">{{#str}}status_late, local_classlog{{/str}}</th>
+                    <th scope="col" class="text-end">{{#str}}status_absent, local_classlog{{/str}}</th>
+                    <th scope="col" class="text-end">{{#str}}status_excused, local_classlog{{/str}}</th>
+                    <th scope="col" class="text-end">{{#str}}col_rate, local_classlog{{/str}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#rows}}
+                <tr>
+                    <th scope="row">{{fullname}}</th>
+                    <td class="text-end">{{sessions}}</td>
+                    <td class="text-end">{{present}}</td>
+                    <td class="text-end">{{late}}</td>
+                    <td class="text-end">{{absent}}</td>
+                    <td class="text-end">{{excused}}</td>
+                    <td class="text-end">{{rate}}</td>
+                </tr>
+                {{/rows}}
+            </tbody>
+        </table>
+    </div>
+    <p class="text-muted small">{{#str}}ratehelp, local_classlog{{/str}}</p>
+    <a class="btn btn-outline-secondary" href="{{downloadurl}}">{{#str}}downloadcsv, local_classlog{{/str}}</a>
+    {{/hasrows}}
+    {{^hasrows}}
+    <p class="text-muted">{{#str}}norows, local_classlog{{/str}}</p>
+    {{/hasrows}}
+</div>

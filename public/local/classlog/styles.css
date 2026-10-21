@@ -1,0 +1,11 @@
+#page-local-classlog-session [id^="fgroup_id_statusgroup"] .form-check-inline {
+    min-height: 2.75rem;
+    margin-right: 1rem;
+    align-items: center;
+}
+
+#page-local-classlog-session [id^="fgroup_id_statusgroup"] .form-check-input {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: .375rem;
+}
