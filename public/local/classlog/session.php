@@ -51,7 +51,7 @@ if (optional_param('delete', 0, PARAM_BOOL)) {
     require_capability('local/classlog:manage', $context);
     if (optional_param('confirm', 0, PARAM_BOOL) && confirm_sesskey()) {
         session_manager::delete($id);
-        redirect($listurl, get_string('deletesession', 'local_classlog'), null, \core\output\notification::NOTIFY_SUCCESS);
+        redirect($listurl, get_string('sessiondeleted', 'local_classlog'), null, \core\output\notification::NOTIFY_SUCCESS);
     }
     echo $OUTPUT->header();
     echo $OUTPUT->confirm(
@@ -112,7 +112,7 @@ $modifier = core_user::get_user($session->usermodified);
 echo $OUTPUT->header();
 echo $OUTPUT->heading($when);
 echo html_writer::div(get_string('lastmodified', 'local_classlog', [
-    'user' => $modifier ? fullname($modifier) : '-',
+    'user' => $modifier ? s(fullname($modifier)) : '-',
     'time' => userdate($session->timemodified, get_string('strftimedatetimeshort', 'core_langconfig')),
 ]), 'text-muted small mb-3');
 $form->display();

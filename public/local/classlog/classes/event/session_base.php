@@ -42,12 +42,8 @@ abstract class session_base extends \core\event\base {
 
     #[\Override]
     public function get_description() {
-        return get_string('event_desc', 'local_classlog', [
-            'userid' => $this->userid,
-            'objectid' => $this->objectid,
-            'courseid' => $this->courseid,
-            'action' => static::ACTION,
-        ]);
+        return "The user with id '{$this->userid}' " . static::ACTION .
+            " the class session with id '{$this->objectid}' in the course with id '{$this->courseid}'.";
     }
 
     #[\Override]

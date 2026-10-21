@@ -42,7 +42,6 @@ $string['event_attendance_saved'] = '출결 저장';
 $string['event_lessonlog_saved'] = '수업일지 저장';
 $string['event_session_created'] = '수업 열기';
 $string['event_session_deleted'] = '수업 삭제';
-$string['event_desc'] = '사용자 id \'{$a->userid}\'가 강좌 id \'{$a->courseid}\'의 수업 id \'{$a->objectid}\'을(를) {$a->action}했습니다.';
 $string['homework'] = '숙제';
 $string['lastmodified'] = '마지막 수정: {$a->user} · {$a->time}';
 $string['lateminutes'] = '지각(분)';
@@ -67,6 +66,7 @@ $string['ratehelp'] = '출석률 = (출석 + 지각) ÷ (수업 수 − 사유�
 $string['remark'] = '비고';
 $string['report'] = '출결 현황';
 $string['sessionexists'] = '이 강좌에 같은 일시의 수업이 이미 있습니다.';
+$string['sessiondeleted'] = '수업을 삭제했습니다.';
 $string['sessions'] = '수업일지';
 $string['sessiontime'] = '수업 일시';
 $string['show'] = '보기';

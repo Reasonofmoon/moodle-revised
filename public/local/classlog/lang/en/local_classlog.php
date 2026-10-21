@@ -42,7 +42,6 @@ $string['event_attendance_saved'] = 'Class attendance saved';
 $string['event_lessonlog_saved'] = 'Class lesson log saved';
 $string['event_session_created'] = 'Class session opened';
 $string['event_session_deleted'] = 'Class session deleted';
-$string['event_desc'] = 'The user with id \'{$a->userid}\' {$a->action} the class session with id \'{$a->objectid}\' in the course with id \'{$a->courseid}\'.';
 $string['homework'] = 'Homework';
 $string['lastmodified'] = 'Last saved: {$a->user} · {$a->time}';
 $string['lateminutes'] = 'Minutes late';
@@ -67,6 +66,7 @@ $string['ratehelp'] = 'Rate = (present + late) ÷ (classes − excused absences)
 $string['remark'] = 'Note';
 $string['report'] = 'Attendance report';
 $string['sessionexists'] = 'This course already has a class at this date and time.';
+$string['sessiondeleted'] = 'Class deleted.';
 $string['sessions'] = 'Class log';
 $string['sessiontime'] = 'Class date and time';
 $string['show'] = 'Show';
