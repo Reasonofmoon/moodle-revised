@@ -33,11 +33,8 @@ class report_filter_form extends \moodleform {
         $mform = $this->_form;
         $mform->addElement('hidden', 'id');
         $mform->setType('id', PARAM_INT);
-        $group = [
-            $mform->createElement('date_selector', 'datefrom', get_string('datefrom', 'local_classlog')),
-            $mform->createElement('date_selector', 'dateto', get_string('dateto', 'local_classlog')),
-            $mform->createElement('submit', 'show', get_string('show', 'local_classlog')),
-        ];
-        $mform->addGroup($group, 'range', '', ' ', false);
+        $mform->addElement('date_selector', 'datefrom', get_string('datefrom', 'local_classlog'));
+        $mform->addElement('date_selector', 'dateto', get_string('dateto', 'local_classlog'));
+        $mform->addElement('submit', 'show', get_string('show', 'local_classlog'));
     }
 }

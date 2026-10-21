@@ -1,11 +1,18 @@
-#page-local-classlog-session [id^="fgroup_id_statusgroup"] .form-check-inline {
-    min-height: 2.75rem;
-    margin-right: 1rem;
+/*
+ * Status radios: core's ".mform .d-flex .fitem" sets margin with !important on
+ * these labels (they carry the fitem class), so the gap needs !important too.
+ */
+#page-local-classlog-session [id^="fgroup_id_statusgroup"] label.form-check-inline {
+    display: inline-flex;
     align-items: center;
+    min-height: 2.75rem;
+    margin-right: 1.25rem !important;
 }
 
-#page-local-classlog-session [id^="fgroup_id_statusgroup"] .form-check-input {
+#page-local-classlog-session [id^="fgroup_id_statusgroup"] label.form-check-inline .form-check-input {
+    flex: 0 0 auto;
+    float: none;
     width: 1.5rem;
     height: 1.5rem;
-    margin-right: .375rem;
+    margin: 0 .5rem 0 0;
 }
