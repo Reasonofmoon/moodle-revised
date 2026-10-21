@@ -43,7 +43,8 @@ $PAGE->set_heading(format_string($course->fullname));
 if (optional_param('open', 0, PARAM_BOOL)) {
     require_sesskey();
     require_capability('local/classlog:manage', $context);
-    $session = session_manager::open((int) $course->id, time());
+    $session = session_manager::find_recent((int) $course->id, time())
+        ?? session_manager::open((int) $course->id, time());
     redirect(new moodle_url('/local/classlog/session.php', ['id' => $session->id]));
 }
 

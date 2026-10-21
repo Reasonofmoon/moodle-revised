@@ -85,6 +85,42 @@ final class session_manager_test extends \advanced_testcase {
         $this->assertSame(1, $DB->count_records('local_classlog_session'));
     }
 
+    public function test_find_recent_returns_session_within_window(): void {
+        $this->resetAfterTest();
+        [$course] = $this->make_class();
+        $session = session_manager::open((int) $course->id, self::T);
+
+        $found = session_manager::find_recent((int) $course->id, self::T + 50 * MINSECS);
+
+        $this->assertNotNull($found);
+        $this->assertEquals($session->id, $found->id);
+    }
+
+    public function test_find_recent_returns_null_after_window(): void {
+        $this->resetAfterTest();
+        [$course] = $this->make_class();
+        session_manager::open((int) $course->id, self::T);
+
+        $this->assertNull(session_manager::find_recent((int) $course->id, self::T + 61 * MINSECS));
+    }
+
+    public function test_find_recent_ignores_future_sessions(): void {
+        $this->resetAfterTest();
+        [$course] = $this->make_class();
+        session_manager::open((int) $course->id, self::T + 2 * HOURSECS);
+
+        $this->assertNull(session_manager::find_recent((int) $course->id, self::T + 10 * MINSECS));
+    }
+
+    public function test_find_recent_ignores_other_courses(): void {
+        $this->resetAfterTest();
+        [$course] = $this->make_class();
+        $other = $this->getDataGenerator()->create_course();
+        session_manager::open((int) $other->id, self::T);
+
+        $this->assertNull(session_manager::find_recent((int) $course->id, self::T + 10 * MINSECS));
+    }
+
     public function test_open_triggers_session_created(): void {
         $this->resetAfterTest();
         [$course] = $this->make_class();

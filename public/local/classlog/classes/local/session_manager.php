@@ -36,6 +36,9 @@ final class session_manager {
     /** @var int Maximum stored remark length. */
     private const REMARK_LENGTH = 255;
 
+    /** @var int A session this recent (seconds) is reused when a teacher opens "today's class" again. */
+    public const REOPEN_WINDOW = HOURSECS;
+
     /**
      * Round a time down to the session grid.
      *
@@ -67,7 +70,6 @@ final class session_manager {
         $students = get_enrolled_users($context, 'local/classlog:attend', 0, 'u.id', null, 0, 0, true);
         $now = time();
 
-        $transaction = $DB->start_delegated_transaction();
         $session = (object) [
             'courseid' => $courseid,
             'sessiontime' => $sessiontime,
@@ -75,21 +77,57 @@ final class session_manager {
             'timemodified' => $now,
             'usermodified' => $USER->id,
         ];
-        $session->id = $DB->insert_record('local_classlog_session', $session);
-        foreach ($students as $student) {
-            $DB->insert_record('local_classlog_entry', (object) [
-                'sessionid' => $session->id,
-                'userid' => $student->id,
-                'status' => status::PRESENT,
-                'lateminutes' => null,
-                'remark' => '',
-                'timemodified' => $now,
-            ]);
+        try {
+            $transaction = $DB->start_delegated_transaction();
+            try {
+                $session->id = $DB->insert_record('local_classlog_session', $session);
+                foreach ($students as $student) {
+                    $DB->insert_record('local_classlog_entry', (object) [
+                        'sessionid' => $session->id,
+                        'userid' => $student->id,
+                        'status' => status::PRESENT,
+                        'lateminutes' => null,
+                        'remark' => '',
+                        'timemodified' => $now,
+                    ]);
+                }
+            } catch (\Throwable $e) {
+                // Rolls back and rethrows.
+                $transaction->rollback($e);
+            }
+            $transaction->allow_commit();
+        } catch (\dml_write_exception $e) {
+            // A concurrent request created the same slot first: use its session.
+            $existing = $DB->get_record('local_classlog_session', ['courseid' => $courseid, 'sessiontime' => $sessiontime]);
+            if ($existing) {
+                return $existing;
+            }
+            throw $e;
         }
-        $transaction->allow_commit();
 
         session_created::create(['objectid' => $session->id, 'context' => $context])->trigger();
         return $session;
+    }
+
+    /**
+     * The course's latest session started within the re-open window before $now.
+     *
+     * @param int $courseid
+     * @param int $now
+     * @return \stdClass|null session record, or null if none
+     */
+    public static function find_recent(int $courseid, int $now): ?\stdClass {
+        global $DB;
+        $records = $DB->get_records_select(
+            'local_classlog_session',
+            'courseid = :courseid AND sessiontime > :since AND sessiontime <= :now',
+            ['courseid' => $courseid, 'since' => $now - self::REOPEN_WINDOW, 'now' => $now],
+            'sessiontime DESC',
+            '*',
+            0,
+            1,
+        );
+        return $records ? reset($records) : null;
     }
 
     /**
