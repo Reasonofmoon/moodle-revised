@@ -64,6 +64,13 @@ fetches the blog feed once, and resets theme caches.
 | `phpunit/cli/init.php` fails | composer self-update, then missing `en_AU.UTF-8` locale | Run with `--disable-composer`; Dockerfile now generates `en_AU` and `ko_KR` |
 | Setup script recreated the level-test course | Existing rule: course with fewer than 4 modules is rebuilt | Expected for demo data; remove that rule before real use |
 
+## Class log (local_classlog)
+
+Attendance + lesson log lives in `public/local/classlog/` and has no academy-specific data,
+so clones need no change. It installs with the same `upgrade.php --allow-unstable` run.
+Teachers see 수업일지 / 출결 현황 in the course "More" menu. Spec:
+`docs/superpowers/specs/2026-10-21-classlog-design.md`.
+
 ## Out of scope for the theme
 
 Demo categories, courses and users in the setup script are still sample data, as are
