@@ -70,8 +70,14 @@ set_config('enabled', 0, 'core_competency');
 set_config(' courselistshortnames', 0);
 
 // Top navigation custom menu shortcuts
-$custommenu = "🎯 레벨 테스트 바로가기|/course/view.php?id=7\n📚 전체 커리큘럼|/course/index.php";
+$custommenu = "📚 전체 커리큘럼|/course/index.php\n🎯 레벨 테스트 바로가기|/course/view.php?id=7\n📅 학부모 상담·간담회 예약|/booking/index.php\n📋 예약 CRM 관리|/booking/admin.php";
 set_config('custommenuitems', $custommenu);
+
+// Ensure Moodle Native Booking & CRM DB table (mdl_readmaster_leads) exists
+if (file_exists(__DIR__ . '/public/booking/lib.php')) {
+    require_once(__DIR__ . '/public/booking/lib.php');
+    readmaster_booking_ensure_schema();
+}
 
 // Theme Boost customization for ReadMaster Academy (Lightweight & Modern Card UI)
 set_config('brandcolor', '#1E3A8A', 'theme_boost');
@@ -1051,6 +1057,99 @@ if (!$course5) {
     rm_configure_enrolment($course5, [$createdusers['teacher1'], $createdusers['teacher2']], [$createdusers['student1']]);
     rebuild_course_cache($course5->id, true);
     cli_writeln("강좌 생성 완료: {$course5->fullname}");
+}
+
+// ---------------------------------------------------------------------------
+// Course 6: [초등 기초] Oxford Reading Tree (ORT Stage 5~7) & 파닉스 완성 (RM-ORT-102)
+// ---------------------------------------------------------------------------
+$c6short = 'RM-ORT-102';
+$course6 = $DB->get_record('course', ['shortname' => $c6short]);
+if (!$course6) {
+    $course6 = create_course((object)[
+        'category' => $categories['RM-CAT-STARTER']->id,
+        'fullname' => '[초등 기초] Oxford Reading Tree (ORT Stage 5~7) & 파닉스 완성',
+        'shortname' => $c6short,
+        'idnumber' => 'RM-COURSE-102',
+        'summary' => '<p>영국 초등 80% 이상이 사용하는 <strong>Oxford Reading Tree (Biff, Chip and Kipper)</strong> 매직키 시리즈를 통해 필수 사이트워드와 파닉스 규칙을 체화하고, 정확한 발음으로 소리 내어 읽는 음독(Reading Aloud) 습관을 기르는 기초 리딩 과정입니다.</p>',
+        'summaryformat' => FORMAT_HTML,
+        'format' => 'topics',
+        'numsections' => 2,
+        'startdate' => time(),
+        'enablecompletion' => 1,
+        'showgrades' => 1,
+        'visible' => 1,
+    ]);
+    rm_setup_sections($course6, [
+        1 => ['name' => 'Stage 5~6. The Magic Key Begins', 'summary' => '마법 열쇠가 빛나며 시작되는 Biff와 Chip의 모험 스토리 정독 및 음독 훈련'],
+        2 => ['name' => 'Stage 7. Longer Stories & Sentence Building', 'summary' => '문장 호흡이 길어지는 Stage 7 스토리 리딩 및 핵심 문장 쓰기 연습'],
+    ]);
+    rm_add_page($course6, 1, 'ORT Stage 5~7 필수 표현 & 음독 체크리스트', '매주 3권의 ORT 스토리북을 읽고 체크리스트를 달성하세요.', '<p>원어민 음원을 듣고 억양(Intonation)과 강세(Stress)를 그대로 모방하여 읽는 훈련을 진행합니다.</p>');
+    rm_add_assign($course6, 2, '[과제] 이번 주 ORT 베스트 스토리 5문장 필사 &낭독 녹음 제출', '<p>가장 재미있었던 장면의 5문장을 노트에 따라 쓰고 낭독 음성 파일을 업로드하세요.</p>');
+    rm_configure_enrolment($course6, [$createdusers['teacher2']], [$createdusers['student2']]);
+    rebuild_course_cache($course6->id, true);
+    cli_writeln("강좌 생성 완료: {$course6->fullname}");
+}
+
+// ---------------------------------------------------------------------------
+// Course 7: [중등 원서] Roald Dahl & Wonder 북클럽 토론반 (RM-WONDER-202)
+// ---------------------------------------------------------------------------
+$c7short = 'RM-WONDER-202';
+$course7 = $DB->get_record('course', ['shortname' => $c7short]);
+if (!$course7) {
+    $course7 = create_course((object)[
+        'category' => $categories['RM-CAT-BOOKCLUB']->id,
+        'fullname' => '[중등 원서] Roald Dahl & Wonder 현대 명작 북클럽 토론반 (AR 4.5~5.2)',
+        'shortname' => $c7short,
+        'idnumber' => 'RM-COURSE-202',
+        'summary' => '<p>전 세계 베스트셀러 <strong>R.J. Palacio의 <em>Wonder</em></strong>와 <strong>Roald Dahl의 <em>Matilda</em></strong>를 원서로 완독하며, 다양한 화자의 시점(Point of View)을 비교하고 매주 영어 디베이트 및 에세이를 진행하는 중등 북클럽 과정입니다.</p>',
+        'summaryformat' => FORMAT_HTML,
+        'format' => 'topics',
+        'numsections' => 2,
+        'startdate' => time(),
+        'enablecompletion' => 1,
+        'showgrades' => 1,
+        'visible' => 1,
+    ]);
+    rm_setup_sections($course7, [
+        1 => ['name' => 'Book 1. R.J. Palacio - Wonder ("Choose Kind")', 'summary' => 'August, Via, Summer, Jack 등 인물별 다중 시점 서사를 분석하고 공감과 용기의 가치를 토론합니다.'],
+        2 => ['name' => 'Book 2. Mr. Browne\'s Precepts & Personal Essay', 'summary' => '작품 속 격언(Precept)을 분석하고 나만의 Precept 에세이를 작성합니다.'],
+    ]);
+    rm_add_page($course7, 1, 'Wonder 핵심 Precepts(격언) & 어휘 분석 노트', 'Mr. Browne 선생님의 월별 격언과 핵심 어휘 정리입니다.', '<p>"When given the choice between being right or being kind, choose kind." 문장의 구조와 주제를 깊이 있게 탐구합니다.</p>');
+    rm_add_assign($course7, 2, '[북클럽 과제] 나만의 Precept(인생 격언) 선정 및 영문 에세이 제출', '<p>자신만의 Precept를 한 문장으로 만들고 그 이유를 150단어 내외의 영문 에세이로 작성해 제출하세요.</p>');
+    rm_configure_enrolment($course7, [$createdusers['teacher2'], $createdusers['teacher1']], [$createdusers['student1']]);
+    rebuild_course_cache($course7->id, true);
+    cli_writeln("강좌 생성 완료: {$course7->fullname}");
+}
+
+// ---------------------------------------------------------------------------
+// Course 8: [고등 수능] 1등급 킬러문항 (빈칸·순서·문장삽입) 논리 독해 실전반 (RM-CSAT-302)
+// ---------------------------------------------------------------------------
+$c8short = 'RM-CSAT-302';
+$course8 = $DB->get_record('course', ['shortname' => $c8short]);
+if (!$course8) {
+    $course8 = create_course((object)[
+        'category' => $categories['RM-CAT-ACADEMIC']->id,
+        'fullname' => '[고등 수능] 1등급 킬러문항 (빈칸·순서·문장삽입) 논리 독해 실전반',
+        'shortname' => $c8short,
+        'idnumber' => 'RM-COURSE-302',
+        'summary' => '<p>평가원 모의고사 및 수능 영어 <strong>31~34번 빈칸추론, 36~39번 순서 배열·문장 삽입</strong> 고난도 문항을 감(感)이 아닌 철저한 <strong>단락 응집성(Coherence)과 지시어·연결어 논리</strong>로 풀어내는 고등 실전 과정입니다.</p>',
+        'summaryformat' => FORMAT_HTML,
+        'format' => 'topics',
+        'numsections' => 2,
+        'startdate' => time(),
+        'enablecompletion' => 1,
+        'showgrades' => 1,
+        'visible' => 1,
+    ]);
+    rm_setup_sections($course8, [
+        1 => ['name' => 'Part 1. 빈칸추론 Paraphrasing & 대조 논리 완결', 'summary' => '주제문 재진술(Paraphrasing) 원리와 이중 부정·비유적 빈칸 완벽 대비'],
+        2 => ['name' => 'Part 2. 순서·문장삽입 시그널(지시사·관사·연결사) 정밀 타격', 'summary' => '단절(Gap)을 찾아내는 5대 논리 시그널 실전 적용 훈련'],
+    ]);
+    rm_add_page($course8, 1, '킬러문항 출제 원리: Paraphrasing & Logical Gap 노트', '평가원 기출 지문 구조 분석 핵심 요약본입니다.', '<p>모든 빈칸은 지문 내 핵심 명제의 재진술(Paraphrasing)이거나 반대 명제의 부정입니다.</p>');
+    rm_add_assign($course8, 2, '[실전 과제] 주간 킬러문항 10제 정답 근거 문장(Clue) 분석표 제출', '<p>단순 정답 체크가 아닌, 각 문항의 결정적 단서 문장(Clue Sentence)과 매력적 오답 소거 근거를 작성하여 제출하세요.</p>');
+    rm_configure_enrolment($course8, [$createdusers['teacher1']], [$createdusers['student1']]);
+    rebuild_course_cache($course8->id, true);
+    cli_writeln("강좌 생성 완료: {$course8->fullname}");
 }
 
 cli_heading("5. 불필요한 모듈·블록·복잡한 부가기능 비활성화 (경량화 세팅)");
