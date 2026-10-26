@@ -1,0 +1,349 @@
+// Public home page (visitors only). Mobile first; widens at md/lg.
+
+// Boost's sticky footer pins body and #page-wrapper to the viewport height, which
+// stops the paper background after the first screen. Let the page grow with its content.
+html:has(> body.rm-home-body),
+body.rm-home-body,
+body.rm-home-body #page-wrapper.rm-home {
+    height: auto;
+    min-height: 100vh;
+    background-color: $rm-paper;
+}
+
+.rm-home {
+    color: $gray-900;
+
+    a:not(.btn) {
+        color: $primary;
+    }
+}
+
+.rm-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+// Top bar.
+.rm-topbar {
+    background-color: $rm-paper;
+    border-bottom: 1px solid rgba($primary, 0.12);
+}
+
+.rm-topbar-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 16px;
+    min-height: 72px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.rm-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.rm-brand-logo {
+    width: 40px;
+    height: 40px;
+}
+
+.rm-brand-name {
+    font-family: $rm-font-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: $primary;
+}
+
+.rm-topnav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 18px;
+    font-size: 0.9375rem;
+
+    a:not(.btn) {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// Hero.
+.rm-hero {
+    position: relative;
+    padding: 48px 0 56px;
+    border-bottom: 6px solid $rm-accent;
+}
+
+.rm-hero-inner {
+    display: grid;
+    gap: 32px;
+    align-items: center;
+
+    @include media-breakpoint-up(md) {
+        grid-template-columns: 1.4fr 1fr;
+    }
+}
+
+.rm-eyebrow {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 4px 12px;
+    border-left: 4px solid $rm-accent;
+    background-color: rgba($primary, 0.06);
+    color: $primary;
+    font-weight: 600;
+}
+
+.rm-hero-title {
+    margin-bottom: 16px;
+    color: $primary;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    line-height: 1.15;
+    word-break: keep-all;
+}
+
+.rm-hero-desc {
+    max-width: 34em;
+    margin-bottom: 28px;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    word-break: keep-all;
+}
+
+.rm-hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.rm-hero-mark {
+    display: none;
+
+    @include media-breakpoint-up(md) {
+        display: block;
+        justify-self: center;
+        width: 100%;
+        max-width: 320px;
+        padding: 16px;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 1px 0 rgba($primary, 0.08), 0 12px 32px rgba($primary, 0.08);
+    }
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+}
+
+// Sections.
+.rm-section {
+    padding: 56px 0;
+}
+
+.rm-section-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.rm-section-title {
+    margin-bottom: 24px;
+    color: $primary;
+    font-size: 1.75rem;
+}
+
+// Programs.
+.rm-program-grid {
+    display: grid;
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include media-breakpoint-up(md) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.rm-program {
+    padding: 24px;
+    border-top: 4px solid $primary;
+    border-radius: 0 0 8px 8px;
+    background-color: #fff;
+}
+
+.rm-program-number {
+    display: block;
+    margin-bottom: 8px;
+    color: darken($rm-accent, 25%);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.rm-program-title {
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+    word-break: keep-all;
+}
+
+.rm-program-desc {
+    margin: 0;
+    color: $gray-700;
+    line-height: 1.65;
+    word-break: keep-all;
+}
+
+// News.
+.rm-news {
+    background-color: #fff;
+}
+
+.rm-news-grid {
+    display: grid;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    @include media-breakpoint-up(md) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.rm-news-item a {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: $gray-900 !important;
+    text-decoration: none;
+
+    &:hover .rm-news-title {
+        text-decoration: underline;
+    }
+}
+
+.rm-news-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 6px;
+    background-color: $rm-paper;
+}
+
+.rm-news-image-empty {
+    aspect-ratio: 16 / 10;
+    background: linear-gradient(135deg, rgba($primary, 0.1), rgba($rm-accent, 0.25));
+}
+
+.rm-news-date {
+    color: $gray-600;
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.rm-news-title {
+    font-weight: 600;
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+// Moodle's main content placeholder; usually empty on the public home.
+// Boost offsets #page for its fixed navbar, which the public home does not have.
+body.rm-home-body #page-wrapper #page {
+    margin-top: 0;
+}
+
+.rm-main-content {
+    padding: 0;
+    background-color: transparent !important;
+
+    // Site home renders a lone <br> when all frontpage items are off.
+    [role="main"] > br {
+        display: none;
+    }
+}
+
+// Footer.
+.rm-footer {
+    padding: 40px 0;
+    background-color: $primary;
+    color: rgba(#fff, 0.85);
+}
+
+.rm-footer-inner {
+    display: grid;
+    gap: 24px;
+
+    @include media-breakpoint-up(md) {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.rm-footer-logo {
+    margin-bottom: 12px;
+    padding: 4px;
+    border-radius: 6px;
+    background-color: #fff;
+}
+
+.rm-footer-name {
+    margin-bottom: 4px;
+    color: #fff;
+    font-family: $rm-font-serif;
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+.rm-footer-tagline {
+    margin: 0;
+}
+
+.rm-footer-contact {
+    margin: 0;
+
+    div {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 6px;
+    }
+
+    dt {
+        min-width: 4.5em;
+        color: $rm-accent;
+        font-weight: 600;
+    }
+
+    dd {
+        margin: 0;
+    }
+}
+
+.rm-footer-copy {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding-top: 16px;
+    border-top: 1px solid rgba(#fff, 0.15);
+    font-size: 0.875rem;
+}

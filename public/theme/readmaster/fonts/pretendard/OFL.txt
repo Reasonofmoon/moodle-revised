@@ -1,0 +1,98 @@
+Copyright (c) 2021 Kil Hyung-jin, with Reserved Font Name Pretendard.
+https://github.com/orioncactus/pretendard
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+*/
+/* [0] */
+@font-face {
+	font-family: 'Pretendard Variable';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 45 920;
+	src: url(./woff2-dynamic-subset/PretendardVariable.subset.0.woff2) format('woff2-variations');
+	unicode-range: U+f9ca-fa0b, U+ff03-ff05, U+ff07, U+ff0a-ff0b, U+ff0d-ff19, U+ff1b, U+ff1d, U+ff20-ff5b, U+ff5d, U+ffe0-ffe3, U+ffe5-ffe6;
+}
+
+/* [1] */
+/* [2] */
+@font-face {
+	font-family: 'Pretendard Variable';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 45 920;
+	src: url(./woff2-dynamic-subset/PretendardVariable.subset.2.woff2) format('woff2-variations');
+	unicode-range: U+d679-d68b, U+d68e-d69e, U+d6a0, U+d6a2-d6a7, U+d6a9-d6c3, U+d6c6-d6c7, U+d6c9-d6cb, U+d6cd-d6d3, U+d6d5-d6d6, U+d6d8-d6e3, U+d6e5-d6e7, U+d6e9-d6fb, U+d6fd-d717, U+d719-d71f, U+d721-d722;
+}
+
+/* [3] */
+/* [4] */
+@font-face {
+	font-family: 'Pretendard Variable';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 45 920;
+	src: url(./woff2-dynamic-subset/PretendardVariable.subset.4.woff2) format('woff2-variations');
+	unicode-range: U+d507, U+d509-d50b, U+d50d-d513, U+d515-d53b, U+d53e-d53f, U+d541-d543, U+d545-d54c, U+d54e, U+d550, U+d552-d557, U+d55a-d55b, U+d55d-d55f, U+d561-d564, U+d566-d567, U+d56a, U+d56c, U+d56e-d573, U+d576-d577, U+d579-d583, U+d585-d586, U+d58a-d5a4, U+d5a6-d5bb;
+}
+
+/* [5] */
+/* [6] */
+@font-face {
+	font-family: 'Pretendard Variable';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 45 920;
+	src: url(./woff2-dynamic-subset/PretendardVariable.subset.6.woff2) format('woff2-variations');
+	unicode-range: U+d3bf-d3c7, U+d3ca-d3cf, U+d3d1-d3eb, U+d3ee-d3ef, U+d3f1-d3f3, U+d3f5-d3fb, U+d3fd-d400, U+d402-d45b, U+d45d-d463;
+}
+
+/* [7] */
+/* [8] */
+@font-face {
+	font-family: 'Pretendard Variable';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 45 920;
+	src: url(./woff2-dynamic-subset/PretendardVariable.subset.8.woff2) format('woff2-variations');
+	unicode-range: U+d257-d27f, U+d281-d29b, U+d29d-d29f, U+d2a1-d2ab, U+d2ad-d2b7, U+d2ba-d2bb, U+d2bd-d2bf, U+d2c1-d2c7, U+d2c9-d2ef, U+d2f2-d2f3, U+d2f5-d2f7, U+d2f9-d2fe;
+}
+
+/* [9] */
+/* [10] */
+@font-face {
+	font-family: 'Pretendard Variable';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 45 920;
+	src: url(./woff2-dynamic-subset/PretendardVariable.subset.10.woff2) format('woff2-variations');
+	unicode-range: U+d105-d12f, U+d132-d133, U+d135-d137, U+d139-d13f, U+d141-d142, U+d144, U+d146-d14b, U+d14e-d14f, U+d151-d153, U+d155-d15b, U+d15e-d187, U+d189-d19f, U+d1a2-d1a3, U+d1a5-d1a7, U+d1a9-d1af, U+d1b2-d1b3;
+}
+
+/* [11] */
+/* [12] */
+@font-face {
+	font-family: 'Pretendard Variable';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 45 920;
+	src: url(./woff2-dynamic-subset/PretendardVariable.subset.12.woff2) format('woff2-variations');
+	unicode-range: U+cfa2-cfc3, U+cfc5-cfdf, U+cfe2-cfe3, U+cfe5-cfe7, U+cfe9-cff4, U+cff6-cffb, U+cffd-cfff, U+d001-d003, U+d005-d017, U+d019-d033, U+d036-d037, U+d039-d03b, U+d03d-d04a;
+}
+
+/* [13] */
+/* [14] */
+@font-face {
+	font-family: 'Pretendard Variable';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 45 920;
+	src: url(./woff2-dynamic-subset/PretendardVariable.subset.14.woff2) format('woff2-variations');
+	unicode-range: U+ce3c-ce57, U+ce5a-ce5b, U+ce5d-ce5f, U+ce61-ce67, U+ce6a, U+ce6c, U+ce6e-ce73, U+ce76-ce77, U+ce79-ce7b, U+ce7d-ce83, U+ce85-ce88, U+ce8a-ce8f, U+ce91-ce93, U+ce95-ce97, U+ce99-ce9f, U+cea2, U+cea4-ceab, U+cead-cee3, U+cee6-cee7, U+cee9-ceeb, U+ceed-ceef;
+}
+
+/* [15] */
+/* [16] */
+@font-face {
+	font-family: 'Pretendard Variable';
