@@ -45,93 +45,164 @@ set_config('forcelogin', 0);
 set_config('timezone', 'Asia/Seoul');
 set_config('forcetimezone', 'Asia/Seoul');
 set_config('country', 'KR');
-set_config('frontpage', '6,5,7,2'); // List of courses, enrolled courses, course search, categories
-set_config('frontpageloggedin', '5,6,7,2');
+// Keep frontpage ultra-clean: only available courses (card grid)
+set_config('frontpage', '6');
+set_config('frontpageloggedin', '6');
 set_config('maxbytes', 104857600); // 100MB
 set_config('enablecompletion', 1);
 set_config('enablemyhome', 1);
+set_config('enabledashboard', 0); // Disable cluttered Dashboard tab; keep only Home & My Courses
 set_config('defaulthomepage', HOMEPAGE_SITE);
 
-// Theme Boost customization for ReadMaster Academy
+// Disable unnecessary/bloated Moodle subsystems for a lightweight Academy LMS
+set_config('enablebadges', 0);
+set_config('enableblogs', 0);
+set_config('bloglevel', 0);
+set_config('enableanalytics', 0);
+set_config('messaging', 0);
+set_config('usetags', 0);
+set_config('enablenotes', 0);
+set_config('enableoutcomes', 0);
+set_config('enableportfolios', 0);
+set_config('enablewebservices', 0);
+set_config('enablemobilewebservice', 0);
+set_config('enabled', 0, 'core_competency');
+set_config(' courselistshortnames', 0);
+
+// Top navigation custom menu shortcuts
+$custommenu = "🎯 레벨 테스트 바로가기|/course/view.php?id=7\n📚 전체 커리큘럼|/course/index.php";
+set_config('custommenuitems', $custommenu);
+
+// Theme Boost customization for ReadMaster Academy (Lightweight & Modern Card UI)
 set_config('brandcolor', '#1E3A8A', 'theme_boost');
 $customscss = <<<SCSS
-// ReadMaster Academy Custom Styling
+// ReadMaster Academy Lightweight & Clean UI Styling
 .readmaster-hero {
     background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
     color: #ffffff;
     border-radius: 16px;
-    padding: 2.5rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.15);
+    padding: 2rem 2.25rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 20px rgba(30, 58, 138, 0.12);
 }
 .readmaster-hero h2 {
     color: #ffffff;
     font-weight: 800;
-    margin-bottom: 0.75rem;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
 }
 .readmaster-badge {
     display: inline-block;
     background: rgba(255, 255, 255, 0.2);
     color: #ffffff;
-    padding: 0.35rem 0.85rem;
+    padding: 0.25rem 0.75rem;
     border-radius: 999px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
 }
 .readmaster-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    margin-top: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.85rem;
+    margin-top: 1.25rem;
 }
 .readmaster-card {
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    padding: 1.25rem;
+    border-radius: 10px;
+    padding: 1rem;
 }
 .readmaster-card h4 {
     color: #fde047;
-    font-size: 1.05rem;
+    font-size: 0.98rem;
     font-weight: 700;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.35rem;
 }
 .readmaster-card p {
     margin-bottom: 0;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     opacity: 0.95;
+}
+
+// Modernize frontpage course list into a clean 2-column card grid
+#frontpage-available-course-list .courses.frontpage-course-list-all {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.25rem;
+    margin-top: 1rem;
+}
+#frontpage-available-course-list .coursebox {
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.35rem;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    margin-bottom: 0 !important;
+}
+#frontpage-available-course-list .coursebox:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(30, 58, 138, 0.08);
+    border-color: #93c5fd;
+}
+#frontpage-available-course-list .coursebox.first {
+    border: 2px solid #2563eb;
+    background: #f8fafc;
+}
+#frontpage-available-course-list .coursebox .coursename a {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    text-decoration: none;
+}
+#frontpage-available-course-list .coursebox .teachers {
+    margin-top: 0.75rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid #f1f5f9;
+    font-size: 0.85rem;
+    color: #64748b;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+// Hide redundant frontpage title & Moodle clutter
+#page-site-index .page-header-headings,
+.btn-footer-popover,
+.footer-content-debugging,
+#page-site-index .sectionname {
+    display: none !important;
 }
 SCSS;
 set_config('scss', $customscss, 'theme_boost');
-set_config('footnote', '<div class="text-center py-2"><strong>리드마스터 영어독해·원서리딩 전문학원 (ReadMaster English Reading Academy)</strong> | 문의: 02-555-READ | 평일 13:00~22:00 / 주말 10:00~18:00</div>', 'theme_boost');
+set_config('footnote', '<div class="text-center py-2 text-muted small"><strong>리드마스터 영어독해·원서리딩 전문학원 (ReadMaster Academy)</strong> | 문의: 02-555-READ | 평일 13:00~22:00 / 주말 10:00~18:00</div>', 'theme_boost');
 
-// Update Frontpage Course (SITEID = 1)
+// Update Frontpage Course (SITEID = 1) - avoid duplicate summary in both course and section 1
 $site = get_site();
 $frontpagesummary = <<<HTML
 <div class="readmaster-hero">
     <span class="readmaster-badge">READMASTER ENGLISH READING ACADEMY</span>
     <h2>리드마스터 영어독해·원서리딩 학원 온라인 학습관</h2>
-    <p style="font-size: 1.08rem; opacity: 0.95;">
-        단순 암기식 영어가 아닌, <strong>원서 정독(Extensive &amp; Intensive Reading)과 정확한 구문·논리 독해</strong>로 흔들리지 않는 영어 실력을 완성합니다.<br>
-        신입생은 먼저 <strong>[01. 레벨 테스트 &amp; 진단]</strong> 강좌에서 온라인 레벨 테스트를 응시해 주세요.
+    <p style="font-size: 1rem; opacity: 0.95; margin-bottom: 0;">
+        원서 정독(Original Book Reading)과 구문·논리 독해로 완성하는 진짜 영어 실력! 신입생은 아래 <strong>[진단] 레벨 테스트</strong>부터 응시해 주세요.
     </p>
     <div class="readmaster-grid">
         <div class="readmaster-card">
-            <h4>Step 1. 정밀 리딩 진단</h4>
-            <p>어휘력·구문 분석력·논리 추론력을 측정하여 AR/Lexile 수준별 맞춤 반 배정</p>
+            <h4>Step 1. 레벨 진단</h4>
+            <p>어휘·구문·추론 진단 후 AR/Lexile 수준별 반 배정</p>
         </div>
         <div class="readmaster-card">
             <h4>Step 2. 원서 리딩 클럽</h4>
-            <p>Magic Tree House부터 Newbery 수상작까지 매주 원서 정독·오디오 섀도잉·북클럽</p>
+            <p>Magic Tree House &amp; Newbery 수상작 정독·퀴즈</p>
         </div>
         <div class="readmaster-card">
-            <h4>Step 3. 구문 &amp; 수능 심층독해</h4>
-            <p>직독직해 구문 훈련과 학술 아티클·수능 고난도 빈칸/추론 완벽 대비</p>
+            <h4>Step 3. 구문·수능 독해</h4>
+            <p>직독직해 구문 분석과 수능 비문학 빈칸·추론 완성</p>
         </div>
         <div class="readmaster-card">
-            <h4>Step 4. 북리포트 &amp; NIE 에세이</h4>
-            <p>읽은 내용을 자신의 언어로 요약·비평하는 Book Report &amp; 영자신문 라이팅 첨삭</p>
+            <h4>Step 4. 북리포트 &amp; 에세이</h4>
+            <p>독후 요약 및 시사 영자신문(NIE) 1:1 라이팅 첨삭</p>
         </div>
     </div>
 </div>
@@ -141,12 +212,12 @@ $DB->update_record('course', (object)[
     'id' => $site->id,
     'fullname' => '리드마스터 영어독해·원서리딩 학원 (ReadMaster Academy)',
     'shortname' => 'ReadMaster',
-    'summary' => $frontpagesummary,
+    'summary' => '',
     'summaryformat' => FORMAT_HTML,
     'numsections' => 1,
 ]);
 
-// Also update Frontpage Section 1 summary so it displays prominently on site home
+// Update Frontpage Section 1 summary so the hero banner displays once cleanly at the top
 $fpsection = $DB->get_record('course_sections', ['course' => $site->id, 'section' => 1]);
 if (!$fpsection) {
     course_create_sections_if_missing($site->id, [1]);
@@ -155,7 +226,7 @@ if (!$fpsection) {
 if ($fpsection) {
     $DB->update_record('course_sections', (object)[
         'id' => $fpsection->id,
-        'name' => '리드마스터 학원 안내',
+        'name' => '',
         'summary' => $frontpagesummary,
         'summaryformat' => FORMAT_HTML,
         'visible' => 1,
@@ -982,5 +1053,40 @@ if (!$course5) {
     cli_writeln("강좌 생성 완료: {$course5->fullname}");
 }
 
+cli_heading("5. 불필요한 모듈·블록·복잡한 부가기능 비활성화 (경량화 세팅)");
+
+// 학원 수업에 꼭 필요한 핵심 활동 모듈 7종만 활성화하고 나머지 16종은 숨김 처리
+$essentialmodules = ['page', 'quiz', 'assign', 'resource', 'url', 'forum', 'qbank'];
+foreach ($DB->get_records('modules') as $mod) {
+    $shouldbevisible = in_array($mod->name, $essentialmodules, true) ? 1 : 0;
+    if ((int)$mod->visible !== $shouldbevisible) {
+        $DB->set_field('modules', 'visible', $shouldbevisible, ['id' => $mod->id]);
+    }
+}
+cli_writeln("필수 학습 모듈(" . implode(', ', $essentialmodules) . ") 외 16개 복잡 모듈 숨김 완료");
+
+// 학원 운영에 필요한 핵심 블록 5종만 남기고 나머지 30종 블록 비활성화
+$essentialblocks = ['myoverview', 'course_list', 'calendar_upcoming', 'login', 'settings'];
+foreach ($DB->get_records('block') as $blk) {
+    $shouldbevisible = in_array($blk->name, $essentialblocks, true) ? 1 : 0;
+    if ((int)$blk->visible !== $shouldbevisible) {
+        $DB->set_field('block', 'visible', $shouldbevisible, ['id' => $blk->id]);
+    }
+}
+cli_writeln("필수 블록(" . implode(', ', $essentialblocks) . ") 외 불필요한 30개 블록 비활성화 완료");
+
+// 강좌 표시 순서(sortorder)를 학원 커리큘럼 단계순(레벨 테스트 -> 초등 -> 뉴베리 -> 구문/수능 -> 영자신문)으로 정렬
+$courseorder = [
+    'RM-LEVEL-TEST' => 10001,
+    'RM-MTH-101'    => 20001,
+    'RM-NEWBERY-201'=> 30001,
+    'RM-SYNTAX-301' => 40001,
+    'RM-NIE-401'    => 50001,
+];
+foreach ($courseorder as $shortname => $sortorder) {
+    $DB->set_field('course', 'sortorder', $sortorder, ['shortname' => $shortname]);
+}
+cli_writeln("강좌 커리큘럼 정렬 순서 최적화 완료");
+
 purge_all_caches();
-cli_heading("리드마스터 학원(ReadMaster Academy) Moodle 초기 세팅이 모두 완료되었습니다!");
+cli_heading("리드마스터 학원(ReadMaster Academy) Moodle 경량화 및 초기 세팅이 모두 완료되었습니다!");
