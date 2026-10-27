@@ -71,21 +71,6 @@ function theme_boost_get_extra_scss($theme) {
     $content .= 'background-size: cover; background-position: center;';
     $content .= ' }';
 
-    // Add a watermark to indicate the image is AI generated, but only for the default image.
-    if ($isdefaultloginimage) {
-        $content .= 'body.pagelayout-login #page .login-layout-left::after {';
-        // Escape the label for use in a CSS string value: collapse newlines (which would break the CSS string)
-        // and escape single quotes and backslashes via addcslashes.
-        $ailabel = preg_replace('/[\r\n]+/', ' ', get_string('aigeneratedimage', 'theme_boost'));
-        $content .= " content: '" . addcslashes($ailabel, "'\\") . "';";
-        $content .= ' position: absolute; bottom: 1rem; right: 1rem;';
-        $content .= ' color: $white;';
-        $content .= ' font-size: 0.8rem;';
-        $content .= ' text-shadow: 0 1px 2px $black;';
-        $content .= ' pointer-events: none;';
-        $content .= ' }';
-    }
-
     // Always return the background image with the scss when we have it.
     return !empty($theme->settings->scss) ? "{$theme->settings->scss}  \n  {$content}" : $content;
 }

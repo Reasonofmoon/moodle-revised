@@ -78,7 +78,9 @@ function theme_readmaster_get_main_scss_content($theme): string {
  * @return string
  */
 function theme_readmaster_get_extra_scss($theme): string {
-    $scss = 'body.pagelayout-login #page .login-layout-left { background-image: none; }' . "\n";
+    $loginbgurl = $theme->image_url('login_background', 'theme');
+    $scss = "body.pagelayout-login #page .login-layout-left { background-image: url('$loginbgurl'); background-size: cover; background-position: center; }\n";
     $scss .= 'body.pagelayout-login #page .login-layout-left::after { content: none; }' . "\n";
+    $scss .= 'body.pagelayout-login .login-layout-left-content.rm-login-panel { background-color: rgba(16, 48, 29, 0.78); backdrop-filter: blur(8px); padding: 2.25rem; border-radius: 18px; border: 1px solid rgba(243, 169, 45, 0.35); }' . "\n";
     return $scss . (string) ($theme->settings->scss ?? '');
 }
