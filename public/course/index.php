@@ -57,77 +57,77 @@ $PAGE->set_secondary_active_tab('categorymain');
 // Track metadata for professional language academy presentation
 $trackmeta = [
     'RM-CAT-LEVEL' => [
-        'step' => 'STEP 01',
-        'badge' => 'TRACK 01 · PLACEMENT TEST',
+        'step' => '1단계',
+        'badge' => '제1과정 · 신입생 정밀 레벨 진단',
         'shortlabel' => '🎯 레벨 진단',
         'color' => '#2563eb',
         'bg' => '#eff6ff',
         'border' => '#bfdbfe',
         'target' => '신입생 전원 필수',
-        'index' => 'AR / Lexile 종합 진단',
+        'index' => '어휘 · 구문 · 추론 종합 진단',
         'method' => '어휘·구문·추론 15분 온라인 진단 → 맞춤 반 배정',
         'icon' => '🎯',
     ],
     'RM-CAT-STARTER' => [
-        'step' => 'STEP 02',
-        'badge' => 'TRACK 02 · PHONICS & STARTER',
+        'step' => '2단계',
+        'badge' => '제2과정 · 파닉스 및 기초 원서 리딩',
         'shortlabel' => '🌱 파닉스·기초 리딩',
         'color' => '#059669',
         'bg' => '#ecfdf5',
         'border' => '#a7f3d0',
         'target' => '초등 1~4학년 / 리딩 입문',
-        'index' => 'AR 1.5 ~ 2.8 (300L~500L)',
-        'method' => '오디오북 섀도잉 + 필수 사이트워드 + 첫 챕터북 완독',
+        'index' => '독해 지수 1.5 ~ 2.8 (기초 완성)',
+        'method' => '원어민 오디오북 따라읽기 + 필수 핵심어휘 + 첫 챕터북 완독',
         'icon' => '🌱',
     ],
     'RM-CAT-BOOKCLUB' => [
-        'step' => 'STEP 03',
-        'badge' => 'TRACK 03 · NEWBERY BOOK CLUB',
+        'step' => '3단계',
+        'badge' => '제3과정 · 뉴베리 수상작 원서 리딩 클럽',
         'shortlabel' => '📖 원서 리딩 클럽',
         'color' => '#d97706',
         'bg' => '#fffbeb',
         'border' => '#fde68a',
         'target' => '초등 고학년 ~ 중등',
-        'index' => 'AR 3.5 ~ 5.5 (650L~900L)',
-        'method' => '뉴베리 수상작 원서 정독 + 챕터 퀴즈 + 영문 북리포트',
+        'index' => '독해 지수 3.5 ~ 5.5 (중급 심화)',
+        'method' => '뉴베리 수상작 원서 정독 + 챕터 퀴즈 + 영문 독서감상문 첨삭',
         'icon' => '📖',
     ],
     'RM-CAT-ACADEMIC' => [
-        'step' => 'STEP 04',
-        'badge' => 'TRACK 04 · SYNTAX & CSAT LOGIC',
+        'step' => '4단계',
+        'badge' => '제4과정 · 중·고등 내신 구문 및 수능 심층 독해',
         'shortlabel' => '🎓 수능·내신 심층독해',
         'color' => '#7c3aed',
         'bg' => '#f5f3ff',
         'border' => '#ddd6fe',
         'target' => '중등 심화 ~ 고등 내신·수능',
-        'index' => 'AR 5.5+ (Lexile 950L~1250L)',
-        'method' => '고난도 구문 분석(S/V/O/C) + 학술 비문학 빈칸·추론 완결',
+        'index' => '독해 지수 5.5+ (고등 심화·수능)',
+        'method' => '고난도 문장 구조 분석 + 학술 비문학 빈칸·순서 추론 완결',
         'icon' => '🎓',
     ],
     'RM-CAT-WRITING' => [
-        'step' => 'STEP 05',
-        'badge' => 'TRACK 05 · NIE & CRITICAL ESSAY',
+        'step' => '5단계',
+        'badge' => '제5과정 · 시사 영자신문 및 논술 에세이 첨삭',
         'shortlabel' => '✍️ 영자신문 & 에세이',
         'color' => '#e11d48',
         'bg' => '#fff1f2',
         'border' => '#fecdd3',
         'target' => '중·고등 심화 / 특목·서술형 대비',
-        'index' => 'Lexile 1000L+ · 5-Paragraph Essay',
-        'method' => '시사 영자신문(NIE) 분석 + 찬반 논술 에세이 1:1 대면/온라인 첨삭',
+        'index' => '고급 비문학 · 5단락 논술 에세이',
+        'method' => '시사 영자신문 심층 분석 + 찬반 논술 에세이 1:1 대면·온라인 첨삭',
         'icon' => '✍️',
     ],
 ];
 
 // Course-specific level badges for rich visual cues
 $coursebadges = [
-    'RM-LEVEL-TEST'  => ['level' => '전 학년 신입생 필수', 'feature' => '실시간 자동채점 · 15분', 'cta' => '레벨 테스트 응시하기'],
-    'RM-MTH-101'     => ['level' => 'AR 2.0~2.8 · 초등 입문', 'feature' => '오디오 섀도잉 + 북리포트', 'cta' => '강의실 입장하기'],
-    'RM-ORT-102'     => ['level' => 'AR 1.5~2.2 · 파닉스 완성', 'feature' => '스토리북 음독 + 핵심어휘', 'cta' => '강의실 입장하기'],
-    'RM-NEWBERY-201' => ['level' => 'AR 4.0~5.5 · 뉴베리 수상작', 'feature' => '원서 정독 + 심화 에세이', 'cta' => '강의실 입장하기'],
-    'RM-WONDER-202'  => ['level' => 'AR 4.5~5.2 · 현대 명작', 'feature' => '인물 분석 + 영어 토론', 'cta' => '강의실 입장하기'],
-    'RM-SYNTAX-301'  => ['level' => 'Lexile 950L+ · 중고등 필수', 'feature' => '12대 구문공식 + 직독직해', 'cta' => '강의실 입장하기'],
-    'RM-CSAT-302'    => ['level' => 'Lexile 1100L+ · 수능 1등급', 'feature' => '빈칸·순서·삽입 킬러 공략', 'cta' => '강의실 입장하기'],
-    'RM-NIE-401'     => ['level' => 'Lexile 1000L+ · 시사 논술', 'feature' => '영자신문 요약 + 1:1 첨삭', 'cta' => '강의실 입장하기'],
+    'RM-LEVEL-TEST'  => ['tag' => '신입생 진단', 'level' => '전 학년 신입생 필수', 'feature' => '실시간 자동채점 · 15분', 'cta' => '레벨 테스트 응시하기'],
+    'RM-MTH-101'     => ['tag' => '초등 입문', 'level' => '독해지수 2.0~2.8 · 초등 입문', 'feature' => '오디오 따라읽기 + 독후감', 'cta' => '강의실 입장하기'],
+    'RM-ORT-102'     => ['tag' => '초등 기초', 'level' => '독해지수 1.5~2.2 · 파닉스 완성', 'feature' => '스토리북 음독 + 핵심어휘', 'cta' => '강의실 입장하기'],
+    'RM-NEWBERY-201' => ['tag' => '초·중등 원서', 'level' => '독해지수 4.0~5.5 · 뉴베리 수상작', 'feature' => '원서 정독 + 심화 에세이', 'cta' => '강의실 입장하기'],
+    'RM-WONDER-202'  => ['tag' => '중등 토론', 'level' => '독해지수 4.5~5.2 · 현대 영미명작', 'feature' => '인물 분석 + 영어 토론', 'cta' => '강의실 입장하기'],
+    'RM-SYNTAX-301'  => ['tag' => '중·고등 구문', 'level' => '중·고등 필수 · 구문 마스터', 'feature' => '12대 구문공식 + 직독직해', 'cta' => '강의실 입장하기'],
+    'RM-CSAT-302'    => ['tag' => '고등 수능', 'level' => '고등 심화 · 수능 1등급 완성', 'feature' => '빈칸·순서·삽입 고난도 공략', 'cta' => '강의실 입장하기'],
+    'RM-NIE-401'     => ['tag' => '논술 특강', 'level' => '시사 비문학 · 서술형 논술', 'feature' => '영자신문 요약 + 1:1 첨삭', 'cta' => '강의실 입장하기'],
 ];
 
 $allcategories = core_course_category::top()->get_children();
@@ -150,7 +150,7 @@ echo $OUTPUT->skip_link_target();
 .rm-curriculum-wrap {
     max-width: 1200px;
     margin: 0 auto;
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 .rm-curriculum-hero {
     background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1d4ed8 100%);
@@ -583,10 +583,10 @@ echo $OUTPUT->skip_link_target();
     <div class="rm-curriculum-hero">
         <div class="rm-curriculum-hero-top">
             <div>
-                <span class="rm-hero-eyebrow">READMASTER ACADEMY · CURRICULUM ROADMAP</span>
+                <span class="rm-hero-eyebrow">리드마스터 학원 · 5단계 정규 커리큘럼 로드맵</span>
                 <h1>리드마스터 수준별 정규 커리큘럼 &amp; 수강 신청</h1>
                 <p>
-                    미국 학년제 리딩 지수(<strong>AR · Lexile</strong>) 정밀 진단부터 파닉스·뉴베리 원서 정독, 중고등 구문·수능 비문학 추론, 영자신문(NIE) 에세이 첨삭까지 학생의 성장 단계에 맞춘 5단계 로드맵을 제공합니다.
+                    신입생 영어 독해력 정밀 진단부터 초등 파닉스·뉴베리 수상작 원서 정독, 중·고등 내신 구문 및 수능 비문학 추론, 시사 영자신문 논술 에세이 첨삭까지 학생의 성장 단계에 맞춘 5단계 로드맵을 제공합니다.
                 </p>
             </div>
             <div class="rm-hero-cta-box">
@@ -665,8 +665,8 @@ echo $OUTPUT->skip_link_target();
             continue;
         }
         $meta = $trackmeta[$cat->idnumber] ?? [
-            'step' => 'TRACK',
-            'badge' => 'READMASTER CURRICULUM',
+            'step' => '정규과정',
+            'badge' => '리드마스터 정규 커리큘럼',
             'shortlabel' => $cat->get_formatted_name(),
             'color' => '#1e3a8a',
             'bg' => '#eff6ff',
@@ -732,7 +732,7 @@ echo $OUTPUT->skip_link_target();
                     <div class="rm-course-card">
                         <div class="rm-course-card-top">
                             <div class="rm-course-pills">
-                                <span class="rm-pill-code"><?php echo s($course->shortname); ?></span>
+                                <span class="rm-pill-code"><?php echo s($cbadge['tag'] ?? '정규 강좌'); ?></span>
                                 <span class="rm-pill-level" style="background: <?php echo $meta['bg']; ?>; color: <?php echo $meta['color']; ?>; border: 1px solid <?php echo $meta['border']; ?>;">
                                     <?php echo s($cbadge['level']); ?>
                                 </span>

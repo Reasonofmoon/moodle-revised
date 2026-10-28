@@ -31,8 +31,8 @@ docker exec -u www-data readmaster-moodle-web php admin/cli/install.php \
   --dbpass=readmaster_db_pass \
   --fullname="리드마스터 영어독해·원서리딩 학원 (ReadMaster Academy)" \
   --shortname="ReadMaster" \
-  --adminuser=admin \
-  --adminpass="ReadMasterAdmin1!" \
+  --adminuser=readmaster \
+  --adminpass="darlbit123" \
   --adminemail="admin@readmaster.kr" \
   --supportemail="support@readmaster.kr" \
   --non-interactive \

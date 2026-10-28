@@ -91,7 +91,7 @@ echo $OUTPUT->header();
     background: transparent !important;
 }
 .rm-booking-wrap {
-    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
     color: #0f172a;
     padding-bottom: 3.5rem;
 }
@@ -787,10 +787,10 @@ echo $OUTPUT->header();
     <?php if ($canmanage): ?>
     <div class="rm-staff-bar">
         <div class="rm-staff-bar-left">
-            <span class="rm-staff-badge">STAFF CRM</span>
-            <span>원장·교사진 전용 알림: 현재 무들 DB에 총 <strong><?php echo (int)$stats['total']; ?>건</strong>의 상담/간담회 예약이 저장되어 있습니다. (🆕 신규 대기 <strong><?php echo (int)$stats['new']; ?>건</strong>)</span>
+            <span class="rm-staff-badge">원장·교사 관리</span>
+            <span>원장·교사진 전용 알림: 현재 학원 데이터베이스에 총 <strong><?php echo (int)$stats['total']; ?>건</strong>의 상담·간담회 예약이 저장되어 있습니다. (🆕 신규 대기 <strong><?php echo (int)$stats['new']; ?>건</strong>)</span>
         </div>
-        <a href="<?php echo $adminurl; ?>" class="rm-staff-btn">📋 상담 예약 CRM 관리 대시보드 열기 →</a>
+        <a href="<?php echo $adminurl; ?>" class="rm-staff-btn">📋 상담 예약 관리 대시보드 열기 →</a>
     </div>
     <?php endif; ?>
 
@@ -800,17 +800,17 @@ echo $OUTPUT->header();
             <div>
                 <div class="rm-bk-badge">
                     <span class="dot"></span>
-                    READMASTER ACADEMY · 학부모 상담 · 레벨테스트 · 간담회 통합 예약 센터
+                    리드마스터 학원 · 학부모 상담 · 레벨테스트 · 간담회 통합 예약 센터
                 </div>
                 <h1>30분이면, 우리 아이의<br><em>영어 원서·문해력 로드맵</em>이 보입니다</h1>
                 <p>
-                    파닉스·원서 다독(Magic Tree House, Newbery)부터 중등 내신 서술형, 고등 수능 1등급 비문학 추론까지.<br>
+                    파닉스·원서 다독(매직트리하우스, 뉴베리 수상작)부터 중등 내신 서술형, 고등 수능 1등급 비문학 추론까지.<br>
                     무료 레벨테스트 진단 결과와 함께 1:1 맞춤 학습 플랜을 설계해 드립니다.
                 </p>
                 <div class="rm-bk-chips">
-                    <span class="rm-bk-chip">🎯 무료 레벨테스트 3종 (어휘·구문·AR)</span>
+                    <span class="rm-bk-chip">🎯 무료 레벨테스트 3종 (어휘·구문·독해지수)</span>
                     <span class="rm-bk-chip">👩‍🏫 원장·부원장 1:1 심층 진단</span>
-                    <span class="rm-bk-chip">📚 수준별 추천 원서 리스트 증정</span>
+                    <span class="rm-bk-chip">📚 수준별 추천 원서 목록 증정</span>
                     <span class="rm-bk-chip">🏫 부천 옥길동 본원 · 춘천 우두동 본점</span>
                 </div>
             </div>
@@ -829,7 +829,7 @@ echo $OUTPUT->header();
             <div class="rm-benefit-icon">📊</div>
             <div>
                 <div class="rm-benefit-title">무료 레벨 테스트</div>
-                <div class="rm-benefit-desc">AR / Lexile 기반 정밀 독해력 진단</div>
+                <div class="rm-benefit-desc">어휘·구문·독해지수 정밀 진단</div>
             </div>
         </div>
         <div class="rm-benefit-card">
@@ -863,7 +863,7 @@ echo $OUTPUT->header();
             <!-- 1. Booking Type Selector -->
             <div class="rm-info-card">
                 <h2>원하시는 예약 유형을 선택해 주세요</h2>
-                <p class="rm-sub">기존 학부모 상시 상담(funnel/book)과 정기 학부모 간담회(briefing)를 한곳에서 신청하실 수 있습니다.</p>
+                <p class="rm-sub">1:1 학부모 맞춤 상담, 무료 레벨테스트, 정기 학부모 간담회를 한곳에서 신청하실 수 있습니다.</p>
 
                 <div class="rm-mode-tabs">
                     <?php foreach ($meta['types'] as $tkey => $tinfo): ?>
@@ -891,14 +891,14 @@ echo $OUTPUT->header();
                         <div class="rm-agenda-time">08 – 18분</div>
                         <div class="rm-agenda-body">
                             <strong>중등 내신 서술형 · 고등 수능 비문학 대비 전략</strong>
-                            <span>학교별 내신 구문(Syntax) 분석, 수능 빈칸·순서 추론 루틴, 영자신문(NIE) 에세이 준비법을 안내합니다.</span>
+                            <span>학교별 내신 문장구조(구문) 분석, 수능 빈칸·순서 추론 루틴, 시사 영자신문 에세이 준비법을 안내합니다.</span>
                         </div>
                     </div>
                     <div class="rm-agenda-row">
                         <div class="rm-agenda-time">18 – 25분</div>
                         <div class="rm-agenda-body">
                             <strong>무료 레벨테스트 진단 결과 1:1 분석</strong>
-                            <span>어휘·구문·추론 진단 결과(AR / Lexile 지수)를 바탕으로 현재 자녀의 강점과 보완 영역을 명확히 짚어드립니다.</span>
+                            <span>어휘·구문·추론 진단 결과(독해 지수)를 바탕으로 현재 자녀의 강점과 보완 영역을 명확히 짚어드립니다.</span>
                         </div>
                     </div>
                     <div class="rm-agenda-row">

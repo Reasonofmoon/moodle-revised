@@ -166,7 +166,7 @@ echo $OUTPUT->header();
     background: transparent !important;
 }
 .rm-crm-wrap {
-    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
     color: #0f172a;
     padding-bottom: 3rem;
 }
@@ -382,14 +382,14 @@ echo $OUTPUT->header();
     <!-- HEADER -->
     <div class="rm-crm-header">
         <div>
-            <h1>📋 리드마스터 상담 · 레벨테스트 · 간담회 CRM</h1>
-            <p>기존 Google Sheets(Code.gs)를 대체하여 무들 자체 DB(<code>mdl_readmaster_leads</code>)에서 실시간으로 예약을 관리합니다.</p>
+            <h1>📋 리드마스터 상담 · 레벨테스트 · 간담회 예약 관리</h1>
+            <p>학원 자체 데이터베이스에서 실시간으로 학부모 상담 및 간담회 예약을 통합 관리합니다.</p>
         </div>
         <div class="rm-crm-header-btns">
             <button type="button" class="rm-crm-btn gold" onclick="document.getElementById('manualAddBox').style.display = (document.getElementById('manualAddBox').style.display === 'none' ? 'block' : 'none')">
                 + 전화 문의 수기 등록
             </button>
-            <a href="<?php echo $csvurl; ?>" class="rm-crm-btn outline">📥 엑셀(CSV) 내보내기</a>
+            <a href="<?php echo $csvurl; ?>" class="rm-crm-btn outline">📥 엑셀 파일 내보내기</a>
             <a href="<?php echo $bookingformurl; ?>" class="rm-crm-btn outline">🔗 학부모 예약 페이지 보기 →</a>
         </div>
     </div>

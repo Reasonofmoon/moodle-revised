@@ -46,10 +46,10 @@ function theme_readmaster_get_pre_scss($theme): string {
     $scss .= '$rm-accent: ' . $brand->get('colors.accent') . ";\n";
     $scss .= '$rm-paper: ' . $brand->get('colors.paper') . ";\n";
     $scss .= '$rm-fontroot: "' . $fontroot . "\";\n";
-    $scss .= '$font-family-sans-serif: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, '
+    $scss .= '$font-family-sans-serif: "Noto Sans KR", "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, '
         . "\"Apple SD Gothic Neo\", \"Malgun Gothic\", sans-serif;\n";
-    $scss .= '$rm-font-serif: "Noto Serif KR", "Nanum Myeongjo", Georgia, serif;' . "\n";
-    $scss .= '$headings-font-family: $rm-font-serif;' . "\n";
+    $scss .= '$rm-font-serif: "Noto Sans KR", sans-serif;' . "\n";
+    $scss .= '$headings-font-family: "Noto Sans KR", sans-serif;' . "\n";
     $scss .= '$headings-font-weight: 700;' . "\n";
     return $scss;
 }

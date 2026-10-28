@@ -45,7 +45,16 @@ set_config('forcelogin', 0);
 set_config('timezone', 'Asia/Seoul');
 set_config('forcetimezone', 'Asia/Seoul');
 set_config('country', 'KR');
+set_config('passwordpolicy', 0); // Allow flexible passwords such as 'darlbit123'
 set_config('maxbytes', 104857600); // 100MB
+
+// Ensure primary site administrator account uses 'readmaster' / 'darlbit123'
+$siteadmin = $DB->get_record('user', ['id' => 2]);
+if ($siteadmin) {
+    $siteadmin->username = 'readmaster';
+    $DB->update_record('user', $siteadmin);
+    update_internal_user_password($siteadmin, 'darlbit123');
+}
 set_config('enablecompletion', 1);
 set_config('enablemyhome', 1);
 set_config('enabledashboard', 0);

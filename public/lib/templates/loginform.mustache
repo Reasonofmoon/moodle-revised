@@ -78,8 +78,8 @@
             <img id="logoimage" src="{{logourl}}" class="img-fluid" alt="{{sitename}}"/>
         </div>
     {{/logourl}}
-    <h1 class="h2">{{#str}}loginwelcomeback{{/str}}</h1>
-    <p class="text-muted mb-4">{{#str}} loginto, core, {{sitename}} {{/str}}</p>
+    <h1 class="h2 fw-bold">환영합니다</h1>
+    <p class="text-muted mb-4">{{sitename}} 온라인 학습관 로그인</p>
     {{#hasoauth2client}}
         <h2 class="login-heading">{{#str}}oauth2:confirmscopes:clientaccesstitle, moodle, {
             "clientname": {{#quote}}{{client.name}}{{/quote}},
