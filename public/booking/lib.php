@@ -136,7 +136,7 @@ function readmaster_booking_format_phone(string $phone): string {
  * Metadata definitions for booking types, statuses, branches, and grades.
  */
 function readmaster_booking_metadata(): array {
-    return [
+    $meta = [
         'types' => [
             'consultation' => [
                 'label' => '1:1 학부모 맞춤 상담',
@@ -233,6 +233,42 @@ function readmaster_booking_metadata(): array {
             '수시 (담당자 확인 후 전화 조율)',
         ],
     ];
+
+    // Override with dynamic academy_config.json if available for B2B multi-academy delivery
+    global $CFG;
+    $cfgfile = $CFG->dirroot . '/academy_config.json';
+    if (!file_exists($cfgfile) && file_exists(dirname($CFG->dirroot) . '/academy_config.json')) {
+        $cfgfile = dirname($CFG->dirroot) . '/academy_config.json';
+    }
+    if (file_exists($cfgfile)) {
+        $custom = json_decode(file_get_contents($cfgfile), true);
+        if (is_array($custom)) {
+            if (!empty($custom['branches']) && is_array($custom['branches'])) {
+                $branches = [];
+                foreach ($custom['branches'] as $b) {
+                    if (!empty($b['name'])) {
+                        $branches[$b['name']] = [
+                            'address' => $b['address'] ?? '',
+                            'phone' => $b['phone'] ?? '',
+                            'directors' => $b['directors'] ?? '',
+                        ];
+                    }
+                }
+                if (!empty($branches)) {
+                    $meta['branches'] = $branches;
+                }
+            }
+            if (!empty($custom['booking']['topics']) && is_array($custom['booking']['topics'])) {
+                foreach (['consultation', 'leveltest', 'briefing'] as $tk) {
+                    if (!empty($custom['booking']['topics'][$tk])) {
+                        $meta['topics'][$tk] = $custom['booking']['topics'][$tk];
+                    }
+                }
+            }
+        }
+    }
+
+    return $meta;
 }
 
 /**

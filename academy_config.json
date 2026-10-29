@@ -1,0 +1,125 @@
+{
+  "academy": {
+    "id": "readmaster",
+    "fullname": "리드마스터 영어독해·원서리딩 학원",
+    "shortname": "리드마스터 학원",
+    "badge": "리드마스터 영어독해 · 원서리딩 전문학원",
+    "login_badge": "리드마스터 원서 도서관 · 온라인 학습관",
+    "tagline": "원서 정독과 구문·논리 독해로 완성하는 진짜 영어 문해력!",
+    "description": "원서 다독·정독(옥스퍼드 리딩 트리, 매직트리하우스, 뉴베리 수상작)부터 중고등 내신 구문 분석, 수능 학술 비문학 추론, 시사 영자신문 에세이 첨삭까지 흔들리지 않는 진짜 영어 문해력을 완성합니다.",
+    "subject_type": "영어독해·원서리딩",
+    "primary_color": "#1E3A8A",
+    "accent_color": "#F59E0B",
+    "font_family": "Noto Sans KR",
+    "support_email": "support@readmaster.kr",
+    "noreply_email": "noreply@readmaster.kr",
+    "login_bg_prompt": "Photorealistic architectural interior photograph of a warm, prestigious classic English reading academy library with floor-to-ceiling walnut and deep forest-green bookshelves, brass reading lamps on oak tables, and natural sunlight through arched windows."
+  },
+  "accounts": {
+    "admin_user": "readmaster",
+    "admin_pass": "darlbit123",
+    "admin_firstname": "총괄관리자",
+    "admin_lastname": "리드마스터",
+    "teachers": [
+      {
+        "username": "teacher1",
+        "password": "ReadMaster1!",
+        "firstname": "리드(원장)",
+        "lastname": "김",
+        "email": "teacher1@readmaster.kr"
+      },
+      {
+        "username": "teacher2",
+        "password": "ReadMaster1!",
+        "firstname": "박마스터(원서전담)",
+        "lastname": "강사",
+        "email": "teacher2@readmaster.kr"
+      }
+    ],
+    "students": [
+      {
+        "username": "student1",
+        "password": "ReadMaster1!",
+        "firstname": "서준",
+        "lastname": "이",
+        "email": "student1@readmaster.kr"
+      },
+      {
+        "username": "student2",
+        "password": "ReadMaster1!",
+        "firstname": "지우",
+        "lastname": "최",
+        "email": "student2@readmaster.kr"
+      }
+    ]
+  },
+  "branches": [
+    {
+      "name": "부천 옥길동 본원",
+      "address": "경기도 부천시 옥길로 113 상림프라자 5층 리드마스터 학원",
+      "phone": "010-3368-7873",
+      "directors": "김민희 원장 (중·고등) · 송세훈 부원장 (초등)"
+    },
+    {
+      "name": "춘천 우두동 본점",
+      "address": "강원특별자치도 춘천시 우두동 리드마스터 학원 본점",
+      "phone": "010-3368-7873",
+      "directors": "김민희 원장 · 송세훈 부원장"
+    }
+  ],
+  "directors": [
+    {
+      "initial": "김",
+      "name": "김민희 원장",
+      "role": "중·고등부 / 수능·입시 총괄",
+      "phone": "010-3368-7873"
+    },
+    {
+      "initial": "송",
+      "name": "송세훈 부원장",
+      "role": "초등부 / 원서 리딩 클럽 총괄",
+      "phone": "010-3368-7873"
+    }
+  ],
+  "frontpage_steps": [
+    {
+      "title": "1단계. 정밀 레벨 진단",
+      "desc": "어휘·구문·추론 진단 후 독해 지수별 맞춤 반 배정"
+    },
+    {
+      "title": "2단계. 원서 리딩 클럽",
+      "desc": "매직트리하우스 및 뉴베리 수상작 원서 정독·퀴즈"
+    },
+    {
+      "title": "3단계. 구문·수능 독해",
+      "desc": "직독직해 구문 분석과 수능 비문학 빈칸·추론 완성"
+    },
+    {
+      "title": "4단계. 독후감 & 에세이",
+      "desc": "독후 요약 및 시사 영자신문 1:1 논술 라이팅 첨삭"
+    }
+  ],
+  "booking": {
+    "hero_title": "30분이면, 우리 아이의<br><em>영어 원서·문해력 로드맵</em>이 보입니다",
+    "hero_subtitle": "파닉스·원서 다독(매직트리하우스, 뉴베리 수상작)부터 중등 내신 서술형, 고등 수능 1등급 비문학 추론까지.<br>무료 레벨테스트 진단 결과와 함께 1:1 맞춤 학습 플랜을 설계해 드립니다.",
+    "topics": {
+      "consultation": [
+        "초·중등 원서 리딩 클럽 상담 (매직트리하우스 ~ 뉴베리 수상작)",
+        "초등 파닉스 및 기초 리딩 입문 상담 (옥스퍼드 리딩 트리 / 필수어휘)",
+        "중등 내신 및 직독직해 구문 독해 집중 상담",
+        "고등 수능 1등급 학술 비문학 및 입시 로드맵 상담",
+        "시사 영자신문 및 논술 에세이 첨삭 상담"
+      ],
+      "leveltest": [
+        "온라인·방문 통합 무료 레벨테스트 (어휘·구문·추론 + 독해지수 진단)",
+        "초등 파닉스·원서 리딩 배치 고사 (독해지수 1.5 ~ 4.5)",
+        "중·고등 내신/수능 구문·비문학 진단 고사 (심화 독해 진단)"
+      ],
+      "briefing": [
+        "초·중등 학부모 간담회 — 원서 다독에서 내신 서술형까지 (저녁 7시)",
+        "중·고등 학부모 간담회 — 수능 1등급 독해 루틴 및 입시 전략 (저녁 7시)",
+        "수시 개별 간담회 요청 (원장 1:1 맞춤 브리핑)"
+      ]
+    }
+  }
+}
