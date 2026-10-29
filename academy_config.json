@@ -13,7 +13,21 @@
     "font_family": "Noto Sans KR",
     "support_email": "support@readmaster.kr",
     "noreply_email": "noreply@readmaster.kr",
-    "login_bg_prompt": "Photorealistic architectural interior photograph of a warm, prestigious classic English reading academy library with floor-to-ceiling walnut and deep forest-green bookshelves, brass reading lamps on oak tables, and natural sunlight through arched windows."
+    "login_bg_prompt": "Photorealistic architectural interior photograph of a warm, prestigious classic English reading academy library with floor-to-ceiling walnut and deep forest-green bookshelves, brass reading lamps on oak tables, and natural sunlight through arched windows.",
+    "login_stats": [
+      {
+        "value": "수준별 원서",
+        "label": "맞춤 도서 큐레이션"
+      },
+      {
+        "value": "5단계 과정",
+        "label": "체계적 독해 로드맵"
+      },
+      {
+        "value": "1:1 밀착 코칭",
+        "label": "원장·부원장 직강"
+      }
+    ]
   },
   "accounts": {
     "admin_user": "readmaster",
@@ -99,7 +113,35 @@
       "desc": "독후 요약 및 시사 영자신문 1:1 논술 라이팅 첨삭"
     }
   ],
+  "curriculum_categories": [
+    {
+      "idnumber": "RM-CAT-LEVEL",
+      "name": "01. 레벨 테스트 & 독해력 진단",
+      "description": "<p>신입생 및 재원생 대상 영어 독해력(어휘·구문·추론) 정밀 진단 평가 및 맞춤 반 배정 안내 과정입니다.</p>"
+    },
+    {
+      "idnumber": "RM-CAT-STARTER",
+      "name": "02. 파닉스 & 기초 원서 리딩",
+      "description": "<p>초등 저학년 및 영어 리딩 입문자를 위한 파닉스, 기초 필수 어휘, 첫 챕터북(독해지수 1.5~2.8) 원서 읽기 과정입니다.</p>"
+    },
+    {
+      "idnumber": "RM-CAT-BOOKCLUB",
+      "name": "03. 원서 리딩 북클럽",
+      "description": "<p>영미권 학년별 필독서 및 뉴베리 수상작 원서를 읽고 챕터별 독해 퀴즈와 북클럽 토론을 진행하는 정규 과정입니다 (독해지수 3.0~5.5+).</p>"
+    },
+    {
+      "idnumber": "RM-CAT-ACADEMIC",
+      "name": "04. 수능·내신 심층 구문독해",
+      "description": "<p>중·고등학생을 위한 직독직해 구문 분석, 학술 비문학 아티클 정독, 내신 서술형 및 수능 고난도 추론(빈칸·순서·삽입) 완성 과정입니다.</p>"
+    },
+    {
+      "idnumber": "RM-CAT-WRITING",
+      "name": "05. 영자신문 & 독후 에세이",
+      "description": "<p>시사 영자신문 리딩과 영문 독후감·비판적 논술 에세이 1:1 첨삭 지도 과정입니다.</p>"
+    }
+  ],
   "booking": {
+    "reset_sample_leads": false,
     "hero_title": "30분이면, 우리 아이의<br><em>영어 원서·문해력 로드맵</em>이 보입니다",
     "hero_subtitle": "파닉스·원서 다독(매직트리하우스, 뉴베리 수상작)부터 중등 내신 서술형, 고등 수능 1등급 비문학 추론까지.<br>무료 레벨테스트 진단 결과와 함께 1:1 맞춤 학습 플랜을 설계해 드립니다.",
     "topics": {
