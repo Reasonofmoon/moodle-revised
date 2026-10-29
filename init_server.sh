@@ -2,18 +2,21 @@
 # ==============================================================================
 #  학원 맞춤형 LMS (Moodle 6.0 + 자체 DB 상담 예약 CRM) 원클릭 완전 자동 구축 스크립트
 #  Usage:
-#    ./init_server.sh [--config=/path/to/academy_config.json] [--url=http://localhost:8080] [--reset-leads]
+#    ./init_server.sh [--config=./academy_config.json] [--url=http://localhost:8080] [--reset-leads]
 # ==============================================================================
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-if [ -f "${SCRIPT_DIR}/docker-compose.yml" ]; then
+if [ -f "${SCRIPT_DIR}/moodle/provision_academy.php" ] && [ -f "${SCRIPT_DIR}/docker-compose.yml" ]; then
+    # 상위 워크스페이스 구조 (./docker-compose.yml + ./moodle/)
     WORKSPACE_DIR="${SCRIPT_DIR}"
     MOODLE_DIR="${SCRIPT_DIR}/moodle"
-elif [ -f "${SCRIPT_DIR}/../docker-compose.yml" ]; then
+elif [ -f "${SCRIPT_DIR}/provision_academy.php" ] && [ -f "${SCRIPT_DIR}/../docker-compose.yml" ]; then
+    # 상위 워크스페이스 내부의 moodle 폴더에서 실행한 경우
     WORKSPACE_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
     MOODLE_DIR="${SCRIPT_DIR}"
 else
+    # Collaborator가 git clone https://github.com/Reasonofmoon/moodle-revised.git 후 바로 실행한 경우
     WORKSPACE_DIR="${SCRIPT_DIR}"
     MOODLE_DIR="${SCRIPT_DIR}"
 fi
@@ -37,7 +40,7 @@ for arg in "$@"; do
             shift
             ;;
         --help|-h)
-            echo "사용법: ./init_server.sh [--config=./moodle/academy_config.json] [--url=http://localhost:8080] [--reset-leads]"
+            echo "사용법: ./init_server.sh [--config=./academy_config.json] [--url=http://localhost:8080] [--reset-leads]"
             exit 0
             ;;
     esac
@@ -47,12 +50,15 @@ echo "======================================================================"
 echo " 🚀 학원 맞춤형 LMS (DB + 커리큘럼 + 상담 CRM) 완전 자동 구축 시작"
 echo "======================================================================"
 echo " - 워크스페이스 경로 : ${WORKSPACE_DIR}"
+echo " - 무들 소스 경로    : ${MOODLE_DIR}"
 echo " - 설정 파일 경로    : ${CONFIG_FILE}"
 echo " - 접속 도메인(URL)  : ${SITE_URL}"
 echo "======================================================================"
 
 # 1. moodledata 디렉터리 및 한국어 언어팩 준비
 mkdir -p "${WORKSPACE_DIR}/moodledata/lang" "${WORKSPACE_DIR}/moodledata/temp" "${WORKSPACE_DIR}/moodledata/cache"
+chmod -R 0777 "${WORKSPACE_DIR}/moodledata" 2>/dev/null || true
+
 if [ ! -f "${WORKSPACE_DIR}/moodledata/lang/ko/moodle.php" ]; then
     echo "[1/4] 한국어(ko) 언어팩 다운로드 및 설치 중..."
     curl -fsSL https://download.moodle.org/download.php/direct/langpack/5.0/ko.zip -o /tmp/moodle_ko.zip || true
@@ -66,9 +72,9 @@ fi
 
 # 2. Docker 컨테이너(MariaDB 11.4 + Apache/PHP 8.3) 구동
 if [ -f "${WORKSPACE_DIR}/docker-compose.yml" ]; then
-    echo "[2/4] Docker 컨테이너(MariaDB 11.4 + Web) 시작 중..."
+    echo "[2/4] Docker 컨테이너(MariaDB 11.4 + Web) 빌드 및 시작 중..."
     cd "${WORKSPACE_DIR}"
-    docker compose up -d
+    docker compose up -d --build
 else
     echo "[2/4] 실행 중인 readmaster-moodle-web 컨테이너 확인 중..."
 fi
@@ -83,7 +89,7 @@ for i in {1..30}; do
     sleep 2
 done
 
-# 4. 학원 설정 파일 복사 및 원클릭 프로비저닝 엔진 실행 (빈 DB일 경우 코어 테이블 자동 설치 포함)
+# 4. 학원 설정 파일 복사 및 원클릭 프로비저닝 엔진 실행 (Composer 의존성 + 빈 DB 코어 설치 자동 포함)
 if [ "$(realpath "${CONFIG_FILE}")" != "$(realpath "${MOODLE_DIR}/academy_config.json")" ]; then
     cp "${CONFIG_FILE}" "${MOODLE_DIR}/academy_config.json"
 fi

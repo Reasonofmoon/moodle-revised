@@ -54,7 +54,19 @@ if (!is_array($cfg) || empty($cfg['academy'])) {
 }
 
 // ---------------------------------------------------------------------------
-// Step 0-A: Auto-generate config.php if missing
+// Step 0-A: Ensure Composer vendor/autoload.php is installed (for fresh git clone)
+// ---------------------------------------------------------------------------
+if (!file_exists($rootdir . '/vendor/autoload.php') && file_exists($rootdir . '/composer.json')) {
+    echo "[Step 0] vendor/autoload.php 미존재 감지 -> Composer 의존성 자동 설치 중...\n";
+    passthru('cd ' . escapeshellarg($rootdir) . ' && composer install --no-dev --optimize-autoloader --no-interaction', $compret);
+    if ($compret !== 0) {
+        fwrite(STDERR, "Composer 설치 실패 (코드: {$compret})\n");
+        exit($compret);
+    }
+}
+
+// ---------------------------------------------------------------------------
+// Step 0-B: Auto-generate config.php if missing
 // ---------------------------------------------------------------------------
 if (!file_exists($configphp)) {
     $dbhost = getenv('MOODLE_DB_HOST') ?: 'db';

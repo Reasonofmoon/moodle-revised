@@ -27,13 +27,13 @@ services:
     container_name: readmaster-moodle-web
     restart: unless-stopped
     ports:
-      - "8080:80"
+      - "${MOODLE_PORT:-8080}:80"
     depends_on:
       db:
         condition: service_healthy
     volumes:
       - ./:/var/www/html
-      - ../moodledata:/var/www/moodledata
+      - ./moodledata:/var/www/moodledata
 
 volumes:
   db_data:

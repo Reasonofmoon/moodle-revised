@@ -64,3 +64,4 @@ tsconfig.aliases.json
 
 # Ignore the types for AMD code.
 /.types
+/moodledata/

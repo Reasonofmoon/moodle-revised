@@ -25,12 +25,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         opcache \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Locales: ko_KR for the Korean UI, en_AU required by the PHPUnit test environment
-RUN apt-get update && apt-get install -y --no-install-recommends locales \
-    && sed -i -e 's/# en_AU.UTF-8/en_AU.UTF-8/' -e 's/# ko_KR.UTF-8/ko_KR.UTF-8/' /etc/locale.gen \
-    && locale-gen \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
-
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
@@ -49,7 +43,7 @@ RUN { \
     echo "opcache.enable = 1"; \
     echo "opcache.memory_consumption = 128"; \
     echo "opcache.max_accelerated_files = 10000"; \
-    echo "opcache.revalidate_freq = 0"; \
+    echo "opcache.revalidate_freq = 60"; \
 } > /usr/local/etc/php/conf.d/moodle.ini
 
 # Configure Apache DocumentRoot (/var/www/html/public) and Moodle router
@@ -67,4 +61,8 @@ RUN a2enmod rewrite headers && \
     } > /etc/apache2/conf-available/moodle-router.conf && \
     a2enconf moodle-router
 
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint-academy.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint-academy.sh
+
 WORKDIR /var/www/html
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint-academy.sh"]
